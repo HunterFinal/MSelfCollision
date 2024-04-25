@@ -10,10 +10,24 @@
     <Filter Include="External">
       <UniqueIdentifier>{ad2e62a7-dc9e-4d3f-9a44-70f1591f9998}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{f8099dba-5d1b-43d5-9f70-3294442ec707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Vector">
+      <UniqueIdentifier>{c01e4497-4dd3-428c-8123-743a7a2c3e2a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Source/Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source/Core/Vector/Vector.cpp">
+      <Filter>Source\Core\Vector</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source/Core/Vector/Vector.h">
+      <Filter>Source\Core\Vector</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
