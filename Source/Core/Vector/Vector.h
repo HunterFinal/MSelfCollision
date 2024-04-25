@@ -194,8 +194,6 @@ namespace Core
 		auto GetNormalized() const-> Vector3;
 		void Normalize();
 
-
-
 	};
 
 }
