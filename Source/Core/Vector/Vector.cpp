@@ -20,6 +20,7 @@
 
 #endif // !_FLOAT_TOLERANCE
 
+
 namespace Core
 {
 // Vector2 
@@ -78,7 +79,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector2 Vector2::operator+(const Vector2& other)
+		Vector2 Vector2::operator+(const Vector2& other) const
 		{
 			Vector2 addVec;
 			addVec.x = x + other.x;
@@ -86,7 +87,7 @@ namespace Core
 			return addVec;
 		}
 
-		Vector2& Vector2::operator+=(const Vector2& other)
+		Vector2& Vector2::operator+=(const Vector2& other) 
 		{
 			x += other.x;
 			y += other.y;
@@ -94,7 +95,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector2 Vector2::operator-(const Vector2& other)
+		Vector2 Vector2::operator-(const Vector2& other) const
 		{
 			Vector2 subVec;
 			subVec.x = x - other.x;
@@ -110,7 +111,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector2 Vector2::operator*(const float num)
+		Vector2 Vector2::operator*(const float num) const
 		{
 			Vector2 mulVec;
 			mulVec.x = x * num;
@@ -119,7 +120,7 @@ namespace Core
 			return mulVec;
 		}
 
-		Vector2 Vector2::operator*(const Vector2& other)
+		Vector2 Vector2::operator*(const Vector2& other) const
 		{
 			Vector2 mulVec;
 			mulVec.x = x * other.x;
@@ -144,7 +145,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector2 Vector2::operator/(const float num)
+		Vector2 Vector2::operator/(const float num)	const
 		{
 			try
 			{
@@ -183,7 +184,7 @@ namespace Core
 			}
 		}
 
-		bool Vector2::operator==(const Vector2& other)
+		bool Vector2::operator==(const Vector2& other)	const
 		{
 			// Check x
 			if ((x - other.x) > -FLOAT_TOLERANCE && (x - other.x) < FLOAT_TOLERANCE)
@@ -196,7 +197,7 @@ namespace Core
 
 		}
 
-		bool Vector2::operator!=(const Vector2 & other)
+		bool Vector2::operator!=(const Vector2 & other)	const
 		{
 			return !(*this == other);
 		}
@@ -221,7 +222,7 @@ namespace Core
 				return Zero;
 			}
 
-			return normalize / GetMagnitude();
+			return normalize / tempManitude;
 		}
 
 		void Vector2::Normalize()

@@ -16,6 +16,12 @@
     <Filter Include="Source\Core\Vector">
       <UniqueIdentifier>{c01e4497-4dd3-428c-8123-743a7a2c3e2a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Core\Base">
+      <UniqueIdentifier>{5b5948b3-b7f7-4866-8b5f-d161c58abf1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core\Collision">
+      <UniqueIdentifier>{15e3f9c7-cf89-47b9-801e-70420b33a941}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source/Main.cpp">
@@ -24,10 +30,22 @@
     <ClCompile Include="Source/Core/Vector/Vector.cpp">
       <Filter>Source\Core\Vector</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Core\Base\Transform2D.cpp">
+      <Filter>Source\Core\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Source/Core/Collision/Collider.cpp">
+      <Filter>Source\Core\Collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source/Core/Vector/Vector.h">
       <Filter>Source\Core\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Base\Transform2D.h">
+      <Filter>Source\Core\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Source/Core/Collision/Collider.h">
+      <Filter>Source\Core\Collision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
