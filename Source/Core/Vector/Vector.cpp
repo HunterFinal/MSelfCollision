@@ -1,13 +1,13 @@
-/*						     Vector	cpp  						    */
-// -------------------------------------------------------------------
+/*									Vector	cpp  									*/
+// ------------------------------------------------------------------------------------
 // File name			:Vector.cpp
 // Summary				:Vector implement
 // List					:1.Vector2
 //						 2.Vector3
 // Writer				:MAI ZHICONG(バク チソウ)
 // Update Message		:2024/04/25		Create
-// 
-// -------------------------------------------------------------------
+//						:2024/04/27		Rewrite rules of operator overload
+// ------------------------------------------------------------------------------------
 
 
 #include <cmath>
@@ -48,7 +48,7 @@ namespace Core
 			return o;
 		}
 
-		Vector2& Vector2::operator=(const Vector2& other)
+		Vector2& Vector2::operator=(const Vector2& other) &
 		{
 			if (this != &other)
 			{
@@ -58,7 +58,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector2& Vector2::operator=(const Vector3& other)
+		Vector2& Vector2::operator=(const Vector3& other) &
 		{
 			x = other.x;
 			y = other.y;
@@ -66,7 +66,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector2& Vector2::operator=(Vector2&& other) noexcept
+		Vector2& Vector2::operator=(Vector2&& other) & noexcept
 		{
 			if (this != &other)
 			{
@@ -79,11 +79,21 @@ namespace Core
 			return *this;
 		}
 
-		Vector2 Vector2::operator+(const Vector2& other) const
+		Vector2 operator+(const Vector2& self, const Vector2& other)
 		{
 			Vector2 addVec;
-			addVec.x = x + other.x;
-			addVec.y = y + other.y;
+			addVec.x = self.x + other.x;
+			addVec.y = self.y + other.y;
+
+			return addVec;
+		}
+
+		Vector2 operator+(const Vector2& self, const Vector3& other)
+		{
+			Vector2 addVec;
+			addVec.x = self.x + other.x;
+			addVec.y = self.y + other.y;
+
 			return addVec;
 		}
 
@@ -95,13 +105,32 @@ namespace Core
 			return *this;
 		}
 
-		Vector2 Vector2::operator-(const Vector2& other) const
+		Vector2& Vector2::operator+=(const Vector3& other)
+		{
+			x += other.x;
+			y += other.y;
+
+			return *this;
+		}
+
+		Vector2 operator-(const Vector2& self, const Vector2& other)
 		{
 			Vector2 subVec;
-			subVec.x = x - other.x;
-			subVec.y = y - other.y;
+			subVec.x = self.x - other.x;
+			subVec.y = self.y - other.y;
+
 			return subVec;
 		}
+
+		Vector2 operator-(const Vector2& self, const Vector3& other)
+		{
+			Vector2 subVec;
+			subVec.x = self.x - other.x;
+			subVec.y = self.y - other.y;
+
+			return subVec;
+		}
+
 
 		Vector2& Vector2::operator-=(const Vector2& other)
 		{
@@ -111,20 +140,34 @@ namespace Core
 			return *this;
 		}
 
-		Vector2 Vector2::operator*(const float num) const
+		Vector2& Vector2::operator-=(const Vector3& other)
+		{
+			x -= other.x;
+			y -= other.y;
+
+			return *this;
+		}
+
+		Vector2 operator *(const Vector2& self, const float num)
 		{
 			Vector2 mulVec;
-			mulVec.x = x * num;
-			mulVec.y = y * num;
+			mulVec.x = self.x * num;
+			mulVec.y = self.y * num;
 
 			return mulVec;
 		}
 
-		Vector2 Vector2::operator*(const Vector2& other) const
+
+		Vector2 operator *(const float num, const Vector2& self)
+		{
+			return self * num;
+		}
+
+		Vector2 operator*(const Vector2& self, const Vector2& other)
 		{
 			Vector2 mulVec;
-			mulVec.x = x * other.x;
-			mulVec.y = y * other.y;
+			mulVec.x = self.x * other.x;
+			mulVec.y = self.y * other.y;
 
 			return mulVec;
 		}
@@ -145,7 +188,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector2 Vector2::operator/(const float num)	const
+		Vector2 operator /(const Vector2& self, const float num)
 		{
 			try
 			{
@@ -154,8 +197,8 @@ namespace Core
 					throw std::invalid_argument("Can't divide by 0");
 				}
 				Vector2 divVec;
-				divVec.x = x / num;
-				divVec.y = y / num;
+				divVec.x = self.x / num;
+				divVec.y = self.y / num;
 				return divVec;
 			}
 			catch (const std::invalid_argument& e)
@@ -184,22 +227,50 @@ namespace Core
 			}
 		}
 
-		bool Vector2::operator==(const Vector2& other)	const
+		bool operator==(const Vector2& self, const Vector2& other)
 		{
 			// Check x
-			if ((x - other.x) > -FLOAT_TOLERANCE && (x - other.x) < FLOAT_TOLERANCE)
+			if ((self.x - other.x) > -FLOAT_TOLERANCE && (self.x - other.x) < FLOAT_TOLERANCE)
 			{
 				// Check y
-				if ((y - other.y) > -FLOAT_TOLERANCE && (y - other.y) < FLOAT_TOLERANCE)
+				if ((self.y - other.y) > -FLOAT_TOLERANCE && (self.y - other.y) < FLOAT_TOLERANCE)
 					return true;
 			}
 			return false;
 
 		}
 
-		bool Vector2::operator!=(const Vector2 & other)	const
+		bool operator!=(const Vector2& self, const Vector2 & other)
 		{
-			return !(*this == other);
+			return !(self == other);
+		}
+
+		Vector2 Vector2::operator-() const
+		{
+			Vector2 negative(*this);
+
+			negative *= (float)-1;
+
+			return negative;
+		}
+
+		Vector2 Vector2::operator+() const
+		{
+			Vector2 positive(*this);
+
+			return positive;
+		}
+		
+		Vector2::operator Vector2() const noexcept
+		{
+			return *this;
+		}
+
+		Vector2::operator Vector3() const noexcept
+		{
+			Vector3 cast (*this);
+
+			return cast;
 		}
 
 	#pragma endregion
@@ -268,7 +339,7 @@ namespace Core
 			return o;
 		}
 
-		Vector3& Vector3::operator=(const Vector2& other)
+		Vector3& Vector3::operator=(const Vector2& other) &
 		{
 			x = other.x;
 			y = other.y;
@@ -277,7 +348,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector3& Vector3::operator=(const Vector3& other)
+		Vector3& Vector3::operator=(const Vector3& other) &
 		{
 			if (this != &other)
 			{
@@ -289,7 +360,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector3& Vector3::operator=(Vector3&& other) noexcept
+		Vector3& Vector3::operator=(Vector3&& other) & noexcept
 		{
 			if (this != &other)
 			{
@@ -305,22 +376,22 @@ namespace Core
 			return *this;
 		}
 
-		Vector3 Vector3::operator+(const Vector2& other)
+		Vector3 operator+(const Vector3& self, const Vector2& other)
 		{
 			Vector3 addVec;
-			addVec.x = x + other.x;
-			addVec.y = y + other.y;
-			addVec.z = z;
+			addVec.x = self.x + other.x;
+			addVec.y = self.y + other.y;
+			addVec.z = self.z;
 
 			return addVec;
 		}
 
-		Vector3 Vector3::operator+(const Vector3& other)
+		Vector3 operator+(const Vector3& self, const Vector3& other)
 		{
 			Vector3 addVec;
-			addVec.x = x + other.x;
-			addVec.y = y + other.y;
-			addVec.z = z + other.z;
+			addVec.x = self.x + other.x;
+			addVec.y = self.y + other.y;
+			addVec.z = self.z + other.z;
 
 			return addVec;
 		}
@@ -341,22 +412,22 @@ namespace Core
 
 			return *this;
 		}
-		Vector3 Vector3::operator-(const Vector2& other)
+		Vector3 operator-(const Vector3& self, const Vector2& other)
 		{
 			Vector3 subVec;
-			subVec.x = x - other.x;
-			subVec.y = y - other.y;
-			subVec.z = z;
+			subVec.x = self.x - other.x;
+			subVec.y = self.y - other.y;
+			subVec.z = self.z;
 
 			return subVec;
 		}
 
-		Vector3 Vector3::operator-(const Vector3& other)
+		Vector3 operator-(const Vector3& self, const Vector3& other)
 		{
 			Vector3 subVec;
-			subVec.x = x - other.x;
-			subVec.y = y - other.y;
-			subVec.z = z;
+			subVec.x = self.x - other.x;
+			subVec.y = self.y - other.y;
+			subVec.z = self.z - other.z;
 
 			return subVec;
 		}
@@ -378,22 +449,27 @@ namespace Core
 			return *this;
 		}
 
-		Vector3 Vector3::operator*(const float num)
+		Vector3 operator*(const Vector3& self, const float num)
 		{
 			Vector3 mulVec;
-			mulVec.x = x * num;
-			mulVec.y = y * num;
-			mulVec.z = z * num;
+			mulVec.x = self.x * num;
+			mulVec.y = self.y * num;
+			mulVec.z = self.z * num;
 
 			return mulVec;
 		}
 
-		Vector3 Vector3::operator*(const Vector3& other)
+		Vector3 operator*(const float num, const Vector3& self)
+		{
+			return self * num;
+		}
+
+		Vector3 operator*(const Vector3& self, const Vector3& other)
 		{
 			Vector3 mulVec;
-			mulVec.x = x * other.x;
-			mulVec.y = y * other.y;
-			mulVec.z = z * other.z;
+			mulVec.x = self.x * other.x;
+			mulVec.y = self.y * other.y;
+			mulVec.z = self.z * other.z;
 
 			return mulVec;
 		}
@@ -416,7 +492,7 @@ namespace Core
 			return *this;
 		}
 
-		Vector3 Vector3::operator/(const float num)
+		Vector3 operator/(const Vector3& self, const float num)
 		{
 			try
 			{
@@ -425,9 +501,9 @@ namespace Core
 					throw std::invalid_argument("Can't divide by 0");
 				}
 				Vector3 divVec;
-				divVec.x = x / num;
-				divVec.y = y / num;
-				divVec.z = z / num;
+				divVec.x = self.x / num;
+				divVec.y = self.y / num;
+				divVec.z = self.z / num;
 
 				return divVec;
 			}
@@ -459,25 +535,53 @@ namespace Core
 			}
 		}
 
-		bool Vector3::operator==(const Vector3& other)
+		bool operator==(const Vector3& self, const Vector3& other)
 		{
 			// Check x
-			if ((x - other.x) > -FLOAT_TOLERANCE && (x - other.x) < FLOAT_TOLERANCE)
+			if ((self.x - other.x) > -FLOAT_TOLERANCE && (self.x - other.x) < FLOAT_TOLERANCE)
 			{
 				// Check y
-				if ((y - other.y) > -FLOAT_TOLERANCE && (y - other.y) < FLOAT_TOLERANCE)
+				if ((self.y - other.y) > -FLOAT_TOLERANCE && (self.y - other.y) < FLOAT_TOLERANCE)
 				{
 					// Check z
-					if ((z - other.z) > -FLOAT_TOLERANCE && (z - other.z) < FLOAT_TOLERANCE)
+					if ((self.z - other.z) > -FLOAT_TOLERANCE && (self.z - other.z) < FLOAT_TOLERANCE)
 						return true;
 				}
 			}
 			return false;
 		}
 
-		bool Vector3::operator!=(const Vector3& other)
+		bool operator!=(const Vector3& self, const Vector3& other)
 		{
-			return !((*this) == other);
+			return !(self == other);
+		}
+
+		Vector3 Vector3::operator+() const
+		{
+			Vector3 positive(*this);
+
+			return positive;
+		}
+
+		Vector3 Vector3::operator-() const
+		{
+			Vector3 negative(*this);
+
+			return negative * (float)-1;
+		}
+
+		Vector3::operator Vector2() const noexcept
+		{
+			Vector2 cast(x, y);
+
+			return cast;
+		}
+
+		Vector3::operator Vector3() const noexcept
+		{
+			Vector3 cast(*this);
+
+			return cast;
 		}
 
 #pragma endregion

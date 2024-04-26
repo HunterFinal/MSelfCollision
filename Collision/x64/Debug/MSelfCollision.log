@@ -1,6 +1,2 @@
-﻿  Vector.cpp
-  Main.cpp
-  Transform2D.cpp
-  コードを生成中...
-D:\Github Repository\MSelfCollision\Source\Core\Base\Transform2D.cpp(8,1): warning C4717: 'Core::Transform2D::operator==': すべてのコントロールのパス、関数を回帰するとランタイム スタック オーバーフローが発生します。
-  MSelfCollision.vcxproj -> D:\Github Repository\MSelfCollision\x64\Debug\Collision.exe
+﻿  Main.cpp
+  MSelfCollision.vcxproj -> H:\Github Repository\MSelfCollision\x64\Debug\Collision.exe

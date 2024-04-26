@@ -43,9 +43,9 @@ namespace Core
 			std::cout << "Transform2D Destructor";
 		}
 
-	public:
-		bool	operator == (const Transform2D& other);
-		bool	operator != (const Transform2D& other);
+		// Equality Compare
+		friend bool	operator == (const Transform2D& self, const Transform2D& other);
+		friend bool	operator != (const Transform2D& self, const Transform2D& other);
 		// Public Method
 	public:
 		void Translate(const Vector2& direction);

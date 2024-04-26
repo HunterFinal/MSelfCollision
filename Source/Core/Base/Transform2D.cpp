@@ -2,14 +2,19 @@
 
 namespace Core
 {
-	bool Transform2D::operator==(const Transform2D& other)
+	bool operator==(const Transform2D& self, const Transform2D& other)
 	{
-		return (*this) == other;
+		if (&self == &other)
+		{
+			return true;
+		}
+
+		return false;
 	}
 
-	bool Transform2D::operator!=(const Transform2D& other)
+	bool operator!=(const Transform2D& self, const Transform2D& other)
 	{
-		return !((*this) == other);
+		return !(self == other);
 	}
 	
 	void Transform2D::Translate(const Vector2& direction)
