@@ -145,6 +145,7 @@
     <ClInclude Include="Source/Core/Collision/Collider.h" />
     <ClInclude Include="Source/Core/Vector/Vector.h" />
     <ClInclude Include="Source\Core\Base\Transform2D.h" />
+    <ClInclude Include="Source\Utilities\Property.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
