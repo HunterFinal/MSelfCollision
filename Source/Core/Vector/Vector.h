@@ -32,35 +32,35 @@ namespace Core
 		/// <summary>
 		/// Vector2(0,0) (x = 0,y = 0)
 		/// </summary>
-		static Vector2 Zero;
+		static const Vector2 Zero;
 		/// <summary>
 		/// Vector2(-1,0) (x = -1,y = 0)
 		/// </summary>
-		static Vector2 Left;
+		static const Vector2 Left;
 		/// <summary>
 		/// Vector2(1,0) (x = 1,y = 0)
 		/// </summary>
-		static Vector2 Right;
+		static const Vector2 Right;
 		/// <summary>
 		/// Vector2(0,1) (x = 0,y = 1)
 		/// </summary>
-		static Vector2 Up;
+		static const Vector2 Up;
 		/// <summary>
 		/// Vector2(0,-1) (x = 0,y = -1)
 		/// </summary>
-		static Vector2 Down;
+		static const Vector2 Down;
 		/// <summary>
 		/// Vector2(1,1) (x = 1,y = 1)
 		/// </summary>
-		static Vector2 One;
+		static const Vector2 One;
 		/// <summary>
 		/// Vector2(INFINITY,INFINITY) (x = inf, y = inf)
 		/// </summary>
-		static Vector2 PositiveInfinity;
+		static const Vector2 PositiveInfinity;
 		/// <summary>
 		/// Vector2(-INFINITY,-INFINITY) (x = -inf, y = -inf)
 		/// </summary>
-		static Vector2 NegativeInfinity;
+		static const Vector2 NegativeInfinity;
 
 	// Constructor
 	//		: x(value)		, y(value)
@@ -73,8 +73,8 @@ namespace Core
 			: x(_x)			, y((float)0)	
 		{}
 
-		explicit Vector2(const float _x, 
-						 const float _y)	
+		constexpr Vector2(const float _x, 
+						 const float _y)	noexcept
 			: x(_x)			, y(_y)			
 		{}
 
@@ -152,43 +152,43 @@ namespace Core
 		/// <summary>
 		/// Vector3(0,0,0) (x = 0, y = 0, z = 0)
 		/// </summary>
-		static Vector3 Zero;
+		static const Vector3 Zero;
 		/// <summary>
 		/// Vector3(-1,0,0) (x = -1, y = 0, z = 0)
 		/// </summary>
-		static Vector3 Left;
+		static const Vector3 Left;
 		/// <summary>
 		/// Vector3(1,0,0) (x = 1, y = 0, z = 0)
 		/// </summary>
-		static Vector3 Right;
+		static const Vector3 Right;
 		/// <summary>
 		/// Vector3(0,1,0) (x = 0, y = 1, z = 0)
 		/// </summary>
-		static Vector3 Up;
+		static const Vector3 Up;
 		/// <summary>
 		/// Vector3(0,-1,0) (x = 0, y = -1, z = 0)
 		/// </summary>
-		static Vector3 Down;
+		static const Vector3 Down;
 		/// <summary>
 		/// Vector3(0,0,1) (x = 0, y = 0, z = 1)
 		/// </summary>
-		static Vector3 Forward;
+		static const Vector3 Forward;
 		/// <summary>
 		/// Vector3(0,0,-1) (x = 0, y = 0, z = -1)
 		/// </summary>
-		static Vector3 Back;
+		static const Vector3 Back;
 		/// <summary>
 		/// Vector3(1,1,1) (x = 1, y = 1, z = 1)
 		/// </summary>
-		static Vector3 One;
+		static const Vector3 One;
 		/// <summary>
 		/// Vector3(INFINITY,INFINITY) (x = inf, y = inf, z = inf)
 		/// </summary>
-		static Vector3 PositiveInfinity;
+		static const Vector3 PositiveInfinity;
 		/// <summary>
 		/// Vector3(-INFINITY,-INFINITY) (x = -inf, y = -inf, z = -inf)
 		/// </summary>
-		static Vector3 NegativeInfinity;
+		static const Vector3 NegativeInfinity;
 
 	// ---------------------------------------------------------
 	// Constructor and Operator overload
@@ -205,9 +205,9 @@ namespace Core
 						 const float _y)					
 			: x(_x)				, y(_y)				, z((float)0)				
 		{}
-		explicit Vector3(const float _x, 
+		constexpr Vector3(const float _x, 
 						 const float _y,
-						 const float _z)	
+						 const float _z)	noexcept
 			: x(_x)				, y(_y)				, z(_z)					
 		{}
 		explicit Vector3(const Vector2 _v2, const float _z)					

@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "H:\\Github Repository\\MSelfCollision\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Vector\\Vector.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Collision\\Collider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Vector\\Vector.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Base\\Transform2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Vector\\Vector.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Base\\Transform2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Collision\\Collider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Base\\Transform2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Collision\\Collider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|H:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Collision\\Collider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,11 +38,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "Main.cpp",
+              "DocumentMoniker": "H:\\Github Repository\\MSelfCollision\\Source\\Main.cpp",
+              "RelativeDocumentMoniker": "Source\\Main.cpp",
+              "ToolTip": "H:\\Github Repository\\MSelfCollision\\Source\\Main.cpp",
+              "RelativeToolTip": "Source\\Main.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-26T07:38:34.189Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Collider.h",
               "DocumentMoniker": "H:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.h",
               "RelativeDocumentMoniker": "Source\\Core\\Collision\\Collider.h",
@@ -50,12 +64,11 @@
               "RelativeToolTip": "Source\\Core\\Collision\\Collider.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-04-26T08:19:39.596Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T08:19:39.596Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Collider.cpp",
               "DocumentMoniker": "H:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.cpp",
               "RelativeDocumentMoniker": "Source\\Core\\Collision\\Collider.cpp",
@@ -63,60 +76,43 @@
               "RelativeToolTip": "Source\\Core\\Collision\\Collider.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-26T08:19:34.846Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T08:19:34.846Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Vector.cpp",
               "DocumentMoniker": "H:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.cpp",
               "RelativeDocumentMoniker": "Source\\Core\\Vector\\Vector.cpp",
               "ToolTip": "H:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.cpp",
               "RelativeToolTip": "Source\\Core\\Vector\\Vector.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAfAAAA",
+              "ViewState": "AQIAADgBAAAAAAAAAAAAAEkBAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-26T15:44:40.54Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T15:44:40.54Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Vector.h",
               "DocumentMoniker": "H:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.h",
               "RelativeDocumentMoniker": "Source\\Core\\Vector\\Vector.h",
               "ToolTip": "H:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.h",
               "RelativeToolTip": "Source\\Core\\Vector\\Vector.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAAEwAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-04-26T07:53:44.118Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T07:53:44.118Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Main.cpp",
-              "DocumentMoniker": "H:\\Github Repository\\MSelfCollision\\Source\\Main.cpp",
-              "RelativeDocumentMoniker": "Source\\Main.cpp",
-              "ToolTip": "H:\\Github Repository\\MSelfCollision\\Source\\Main.cpp",
-              "RelativeToolTip": "Source\\Main.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-26T07:38:34.189Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Transform2D.h",
               "DocumentMoniker": "H:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.h",
               "RelativeDocumentMoniker": "Source\\Core\\Base\\Transform2D.h",
               "ToolTip": "H:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.h",
               "RelativeToolTip": "Source\\Core\\Base\\Transform2D.h",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAC8AAAA0AAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAC8AAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-04-26T07:36:56.375Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T07:36:56.375Z"
             },
             {
               "$type": "Document",
@@ -128,8 +124,7 @@
               "RelativeToolTip": "Source\\Core\\Base\\Transform2D.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-26T03:03:28.432Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T03:03:28.432Z"
             }
           ]
         }
