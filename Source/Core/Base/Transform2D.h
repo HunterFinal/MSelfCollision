@@ -10,6 +10,9 @@
 
 #include <iostream>
 #include "../Vector/Vector.h"
+#include "../../Utilities/Property.h"
+
+using namespace MUtil;
 
 namespace Core
 {
@@ -18,7 +21,7 @@ namespace Core
 		//Constructor
 	public:
 		Transform2D() 
-			: _pPosition2D(nullptr) 
+			: _pPosition2D(nullptr)
 		{
 			_pPosition2D = new Vector2();
 		}
@@ -33,6 +36,7 @@ namespace Core
 		{
 			_pPosition2D = new Vector2(x, y);
 		}
+
 		virtual ~Transform2D()
 		{
 			if (_pPosition2D != nullptr)
@@ -40,7 +44,6 @@ namespace Core
 				delete _pPosition2D;
 				_pPosition2D = nullptr;
 			}
-			std::cout << "Transform2D Destructor";
 		}
 
 		// Equality Compare
@@ -51,6 +54,7 @@ namespace Core
 		void Translate(const Vector2& direction);
 		void Translate(const Vector2& normalizedDirection, const float axisValue);
 		auto GetPosition() const->	Vector2;
+
 		// プロパティ
 	private:
 		Vector2* _pPosition2D;

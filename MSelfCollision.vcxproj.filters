@@ -22,6 +22,9 @@
     <Filter Include="Source\Core\Collision">
       <UniqueIdentifier>{15e3f9c7-cf89-47b9-801e-70420b33a941}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Utilities">
+      <UniqueIdentifier>{418b8bf1-3fce-4c71-aef1-00feb23ec073}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source/Main.cpp">
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="Source/Core/Collision/Collider.h">
       <Filter>Source\Core\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\Property.h">
+      <Filter>Source\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
