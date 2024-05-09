@@ -53,5 +53,11 @@
     <ClInclude Include="Source\Utilities\Property.h">
       <Filter>Source\Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Utilities\ring_buffer.h">
+      <Filter>Source\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\memory_release_def.h">
+      <Filter>Source\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

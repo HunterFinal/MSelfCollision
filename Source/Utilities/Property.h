@@ -111,4 +111,4 @@ namespace MUtil
 
 	};
 
-}
+}// namespace MUtil
