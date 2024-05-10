@@ -59,5 +59,8 @@
     <ClInclude Include="Source\Utilities\memory_release_def.h">
       <Filter>Source\Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Utilities\Factory.h">
+      <Filter>Source\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

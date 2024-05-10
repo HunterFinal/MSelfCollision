@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <string>
+#include <vector>
 
 #include "Utilities/ring_buffer.h"
 #include "Core/Vector/Vector.h"
@@ -25,16 +26,13 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
 #endif
 {
-	Vector2 x1(5.f,10.f);
-
-	MessageBox(nullptr, ToCString(x1.x), ToCString(x1.y), MB_OK);
-
 #ifdef DEBUG
+	// コンソールを開く
 	AllocConsole();
 	FILE* stream = nullptr;
 	freopen_s(&stream, "CONOUT$", "w", stdout);
 #endif // DEBUG
-
+	
 #ifdef DEBUG
 	system("pause");
 #endif // DEBUG
