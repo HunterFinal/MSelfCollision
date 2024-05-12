@@ -31,10 +31,14 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	AllocConsole();
 	FILE* stream = nullptr;
 	freopen_s(&stream, "CONOUT$", "w", stdout);
+	freopen_s(&stream, "CONIN$", "r", stdin);
 #endif // DEBUG
 	
 #ifdef DEBUG
 	system("pause");
+	// ƒRƒ“ƒ\[ƒ‹‚ğ‰ğ•ú
+	FreeConsole();
+
 #endif // DEBUG
 	return 0;
 }
