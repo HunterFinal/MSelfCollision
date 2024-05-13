@@ -66,14 +66,14 @@ namespace Core
 	//		: x(value)		, y(value)
 	public:
 		Vector2()											
-			: x((float)0)	, y((float)0)	
+			: x(0.f)	, y(0.f)
 		{}
 
 		explicit Vector2(const float _x)					
-			: x(_x)			, y((float)0)	
+			: x(_x)			, y(0.f)	
 		{}
 
-		constexpr Vector2(const float _x, 
+		explicit Vector2(const float _x, 
 						 const float _y)	noexcept
 			: x(_x)			, y(_y)			
 		{}
@@ -86,8 +86,8 @@ namespace Core
 		Vector2(Vector2&& other) noexcept					
 			: x(other.x)	, y(other.y)	
 		{	
-			other.x = (float)0;
-			other.y = (float)0; 
+			other.x = 0.f;
+			other.y = 0.f; 
 		}
 
 		// Operator overload
@@ -196,14 +196,14 @@ namespace Core
 	// ---------------------------------------------------------
 	public:
 		Vector3()															
-			: x((float)0)		, y((float)0)		, z((float)0)	
+			: x(0.f)		, y(0.f)		, z(0.f)
 		{}
 		explicit Vector3(const float _x)									
-			: x(_x)				, y((float)0)		, z((float)0)		
+			: x(_x)				, y(0.f)		, z(0.f)
 		{}
 		explicit Vector3(const float _x, 
 						 const float _y)					
-			: x(_x)				, y(_y)				, z((float)0)				
+			: x(_x)				, y(_y)				, z(0.f)
 		{}
 		constexpr Vector3(const float _x, 
 						 const float _y,
@@ -216,7 +216,7 @@ namespace Core
 
 		// Copy
 		Vector3(const Vector2& other)										
-			: x(other.x)		, y(other.y)		, z((float)0)	
+			: x(other.x)		, y(other.y)		, z(0.f)
 		{}
 		Vector3(const Vector3& other)										
 			: x(other.x)		, y(other.y)		, z(other.z)	
@@ -226,9 +226,9 @@ namespace Core
 		Vector3(Vector3&& other) noexcept									
 			: x(other.x)		, y(other.y)		, z(other.z)	
 		{ 
-			other.x = (float)0; 
-			other.y = (float)0; 
-			other.z = (float)0; 
+			other.x = 0.f;
+			other.y = 0.f;
+			other.z = 0.f;
 		}
 
 		// Operator overload

@@ -145,9 +145,10 @@
     <ClInclude Include="Source/Core/Collision/Collider.h" />
     <ClInclude Include="Source/Core/Vector/Vector.h" />
     <ClInclude Include="Source\Core\Base\Transform2D.h" />
-    <ClInclude Include="Source\Utilities\Factory.h" />
+    <ClInclude Include="Source\Utilities\factory.h" />
     <ClInclude Include="Source\Utilities\memory_release_def.h" />
-    <ClInclude Include="Source\Utilities\Property.h" />
+    <ClInclude Include="Source\Utilities\pool.h" />
+    <ClInclude Include="Source\Utilities\property.h" />
     <ClInclude Include="Source\Utilities\ring_buffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

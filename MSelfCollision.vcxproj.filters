@@ -50,7 +50,7 @@
     <ClInclude Include="Source/Core/Collision/Collider.h">
       <Filter>Source\Core\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utilities\Property.h">
+    <ClInclude Include="Source\Utilities\property.h">
       <Filter>Source\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\ring_buffer.h">
@@ -59,7 +59,10 @@
     <ClInclude Include="Source\Utilities\memory_release_def.h">
       <Filter>Source\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utilities\Factory.h">
+    <ClInclude Include="Source\Utilities\factory.h">
+      <Filter>Source\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utilities\pool.h">
       <Filter>Source\Utilities</Filter>
     </ClInclude>
   </ItemGroup>

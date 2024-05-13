@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 
-#include "Utilities/ring_buffer.h"
 #include "Core/Vector/Vector.h"
 #include "Core/Base/Transform2D.h"
+#include "Utilities/pool.h"
 
 using namespace Core;
 
@@ -33,7 +33,19 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	freopen_s(&stream, "CONOUT$", "w", stdout);
 	freopen_s(&stream, "CONIN$", "r", stdin);
 #endif // DEBUG
-	
+	{
+		MUtil::Pool<int> pool(10);
+
+		for (int i = 0; i < 30; ++i)
+		{
+			int obj = pool.Allocate();
+			std::cout << obj << std::endl;
+
+			obj += 10;
+
+			pool.Recycle(obj);
+		}
+	}
 #ifdef DEBUG
 	system("pause");
 	// ƒRƒ“ƒ\[ƒ‹‚ð‰ð•ú
