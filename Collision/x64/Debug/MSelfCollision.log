@@ -1,3 +1,3 @@
 ﻿  Main.cpp
-D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(63,1): warning C4172: ローカル変数またはテンポラリのアドレスを返します: obj
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(70,1): warning C4172: ローカル変数またはテンポラリのアドレスを返します: obj
   MSelfCollision.vcxproj -> D:\Github Repository\MSelfCollision\x64\Debug\Collision.exe

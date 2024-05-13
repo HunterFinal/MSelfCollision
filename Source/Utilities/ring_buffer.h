@@ -68,14 +68,19 @@ namespace MUtil
 	template<typename T>
 	RingBuffer<T>::~RingBuffer()
 	{
-		SAVE_DELETE_ARRAY(_pDataBuffer)
-
 		// コンソールデバッグ用
 		{
-			//#ifdef DEBUG
-			//	std::cout << "Delete ring buffer" << std::endl;
-			//#endif
+			#ifdef DEBUG
+				//std::cout << "Delete ring buffer" << std::endl;
+			/*for (int i = 0; i < _bufferSize; ++i)
+			{
+				std::cout << _pDataBuffer[i] << std::endl;
+			}*/
+			#endif
 		}
+
+		SAVE_DELETE_ARRAY(_pDataBuffer)
+
 	}
 
 	template<typename T>
@@ -117,6 +122,7 @@ namespace MUtil
 			//#ifdef  DEBUG
 			//	std::cout << "Ring buffer push method called" << std::endl;
 			//#endif //  DEBUG
+
 		}
 	}
 
@@ -155,9 +161,11 @@ namespace MUtil
 	int32_t RingBuffer<T>::Size() const
 	{
 		return	(_tailIndex > _headIndex) ? 
-				// _tailIndex > _headIndex
+
+				// (true)_tailIndex > _headIndex
 				(_headIndex - _tailIndex + _bufferSize) : 
-				// _tailIndex <= _headIndex
+
+				// (false)_tailIndex <= _headIndex
 				(_headIndex - _tailIndex);
 	}
 }// namespace MUtil

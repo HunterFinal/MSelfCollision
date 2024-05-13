@@ -10,6 +10,7 @@
 
 using namespace Core;
 
+
 #ifdef _UNICODE
 	typedef std::wstring STRING;
 	#define ToString(x)		std::to_wstring(x)
@@ -34,17 +35,18 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	freopen_s(&stream, "CONIN$", "r", stdin);
 #endif // DEBUG
 	{
-		MUtil::Pool<int> pool(10);
+		MUtil::IPool<char> *pool = new Pool<char>(10);
 
-		for (int i = 0; i < 30; ++i)
+		for (int i = 0; i < 10; ++i)
 		{
-			int obj = pool.Allocate();
-			std::cout << obj << std::endl;
+			char obj = pool->Allocate();
 
-			obj += 10;
+			obj = (char)('0' + i);
 
-			pool.Recycle(obj);
+			pool->Recycle(obj);
 		}
+
+		delete pool;
 	}
 #ifdef DEBUG
 	system("pause");

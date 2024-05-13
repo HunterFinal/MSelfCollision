@@ -15,14 +15,22 @@ namespace MUtil
 	public:
 		virtual obj& Allocate() const = 0;
 		virtual void Recycle(const obj& recycleObj) = 0;
+	public:
+		virtual ~IPool() 
+		{			
+			#ifdef DEBUG
+				std::cout << "Delete interface IPool" << std::endl;
+			#endif // DEBUG
+		}
 	};
 
 	template<typename T>
 	class Pool : public IPool<T>
 	{
+
 	public:
-		T& Allocate() const override;
-		void Recycle(const T& recycleObj) override;
+		inline T& Allocate() const override;
+		inline void Recycle(const T& recycleObj) override;
 
 	public:
 		explicit Pool(int size) 
@@ -34,17 +42,16 @@ namespace MUtil
 			//#ifdef DEBUG
 			//	std::cout << "Create pool" << std::endl;
 			//#endif // DEBUG
-
 		}
 		virtual ~Pool()
 		{
 			SAVE_DELETE(_pPool)
-			//#ifdef DEBUG
-			//	std::cout << "Delete pool" << std::endl;
-			//#endif // DEBUG
+			#ifdef DEBUG
+				std::cout << "Delete pool" << std::endl;
+			#endif // DEBUG
 		}
 	private:
-		void InitPool();
+		inline void InitPool();
 
 	protected:
 		RingBuffer<T> *_pPool;
@@ -52,7 +59,7 @@ namespace MUtil
 	};
 
 	template <typename T>
-	T& Pool<T>::Allocate() const
+	inline T& Pool<T>::Allocate() const
 	{
 		T obj;
 		if (_pPool != nullptr)
@@ -64,7 +71,7 @@ namespace MUtil
 	}
 
 	template <typename T>
-	void Pool<T>::Recycle(const T& recycleObj)
+	inline void Pool<T>::Recycle(const T& recycleObj)
 	{
 		if (_pPool != nullptr)
 		{
@@ -73,7 +80,7 @@ namespace MUtil
 	}
 
 	template<typename T>
-	void Pool<T>::InitPool()
+	inline void Pool<T>::InitPool()
 	{
 		_pPool->Init(_poolSize);
 		_poolSize = _pPool->Capacity();

@@ -136,13 +136,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source/Core/Collision/Collider.cpp" />
+    <ClCompile Include="Source\Core\Collision\Collider2D.cpp" />
     <ClCompile Include="Source/Main.cpp" />
     <ClCompile Include="Source/Core/Vector/Vector.cpp" />
     <ClCompile Include="Source\Core\Base\Transform2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source/Core/Collision/Collider.h" />
+    <ClInclude Include="Source\Core\Collision\Collider2D.h" />
     <ClInclude Include="Source/Core/Vector/Vector.h" />
     <ClInclude Include="Source\Core\Base\Transform2D.h" />
     <ClInclude Include="Source\Utilities\factory.h" />

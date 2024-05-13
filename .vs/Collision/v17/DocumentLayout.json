@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "D:\\Github Repository\\MSelfCollision\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\Pool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Utilities\\Pool.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\ring_buffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Utilities\\ring_buffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\memory_release_def.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Utilities\\memory_release_def.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\Factory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Utilities\\Factory.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\memory_release_def.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Utilities\\memory_release_def.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Collision\\Collider2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Collision\\Collider2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Base\\Transform2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\Property.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -35,20 +47,8 @@
       "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Vector\\Vector.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Collision\\Collider.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Collision\\Collider.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Base\\Transform2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|D:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CC8B2F2D-22E2-4728-A073-8F4A1CFB27D7}|MSelfCollision.vcxproj|solutionrelative:Source\\Core\\Base\\Transform2D.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,17 +58,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "pool.h",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\pool.h",
               "RelativeDocumentMoniker": "Source\\Utilities\\pool.h",
               "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\pool.h",
               "RelativeToolTip": "Source\\Utilities\\pool.h",
-              "ViewState": "AQIAAD4AAAAAAAAAAAAwwE8AAAAfAAAA",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAAFIAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-13T01:20:17.452Z",
               "IsPinned": true,
@@ -76,20 +76,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Main.cpp",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Main.cpp",
               "RelativeDocumentMoniker": "Source\\Main.cpp",
               "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Main.cpp",
               "RelativeToolTip": "Source\\Main.cpp",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAACYAAAAYAAAA",
+              "ViewState": "AQIAACIAAAAAAAAAAAAAACkAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-04-26T07:38:34.189Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "factory.h",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\factory.h",
               "RelativeDocumentMoniker": "Source\\Utilities\\factory.h",
@@ -108,14 +108,14 @@
               "RelativeDocumentMoniker": "Source\\Utilities\\ring_buffer.h",
               "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\ring_buffer.h",
               "RelativeToolTip": "Source\\Utilities\\ring_buffer.h",
-              "ViewState": "AQIAAHsAAAAAAAAAAAASwJUAAAACAAAA",
+              "ViewState": "AQIAABwAAAAAAAAAAAAYwEUAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-10T03:32:27.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "memory_release_def.h",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\memory_release_def.h",
               "RelativeDocumentMoniker": "Source\\Utilities\\memory_release_def.h",
@@ -128,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "property.h",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\property.h",
               "RelativeDocumentMoniker": "Source\\Utilities\\property.h",
@@ -136,37 +136,36 @@
               "RelativeToolTip": "Source\\Utilities\\property.h",
               "ViewState": "AQIAAB4AAAAAAAAAAAAAADIAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-09T14:28:15.009Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-09T14:28:15.009Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Collider.h",
-              "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.h",
-              "RelativeDocumentMoniker": "Source\\Core\\Collision\\Collider.h",
-              "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.h",
-              "RelativeToolTip": "Source\\Core\\Collision\\Collider.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAMAAAA",
+              "DocumentIndex": 5,
+              "Title": "Collider2D.h",
+              "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider2D.h",
+              "RelativeDocumentMoniker": "Source\\Core\\Collision\\Collider2D.h",
+              "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider2D.h",
+              "RelativeToolTip": "Source\\Core\\Collision\\Collider2D.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-04-26T08:19:39.596Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Collider.cpp",
-              "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.cpp",
-              "RelativeDocumentMoniker": "Source\\Core\\Collision\\Collider.cpp",
-              "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider.cpp",
-              "RelativeToolTip": "Source\\Core\\Collision\\Collider.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-26T08:19:34.846Z",
+              "WhenOpened": "2024-04-26T08:19:39.596Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
+              "Title": "Collider2D.cpp",
+              "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider2D.cpp",
+              "RelativeDocumentMoniker": "Source\\Core\\Collision\\Collider2D.cpp",
+              "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Collision\\Collider2D.cpp",
+              "RelativeToolTip": "Source\\Core\\Collision\\Collider2D.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-26T08:19:34.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Vector.cpp",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.cpp",
               "RelativeDocumentMoniker": "Source\\Core\\Vector\\Vector.cpp",
@@ -174,12 +173,11 @@
               "RelativeToolTip": "Source\\Core\\Vector\\Vector.cpp",
               "ViewState": "AQIAAFoAAAAAAAAAAAAAAD8BAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-26T15:44:40.54Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T15:44:40.54Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Vector.h",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Vector\\Vector.h",
               "RelativeDocumentMoniker": "Source\\Core\\Vector\\Vector.h",
@@ -187,24 +185,23 @@
               "RelativeToolTip": "Source\\Core\\Vector\\Vector.h",
               "ViewState": "AQIAABwAAAAAAAAAAAAAAOYAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-04-26T07:53:44.118Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T07:53:44.118Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 7,
               "Title": "Transform2D.h",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.h",
               "RelativeDocumentMoniker": "Source\\Core\\Base\\Transform2D.h",
               "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.h",
               "RelativeToolTip": "Source\\Core\\Base\\Transform2D.h",
-              "ViewState": "AQIAAC4AAAAAAAAAAAAAAC8AAAAAAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAAAC8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-04-26T07:36:56.375Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Transform2D.cpp",
               "DocumentMoniker": "D:\\Github Repository\\MSelfCollision\\Source\\Core\\Base\\Transform2D.cpp",
               "RelativeDocumentMoniker": "Source\\Core\\Base\\Transform2D.cpp",

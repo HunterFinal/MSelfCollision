@@ -36,7 +36,7 @@
     <ClCompile Include="Source\Core\Base\Transform2D.cpp">
       <Filter>Source\Core\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Source/Core/Collision/Collider.cpp">
+    <ClCompile Include="Source\Core\Collision\Collider2D.cpp">
       <Filter>Source\Core\Collision</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="Source\Core\Base\Transform2D.h">
       <Filter>Source\Core\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Source/Core/Collision/Collider.h">
+    <ClInclude Include="Source\Core\Collision\Collider2D.h">
       <Filter>Source\Core\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utilities\property.h">
