@@ -81,7 +81,7 @@ namespace MUtil
 		T obj;
 		if (_pPool != nullptr)
 		{
-			_pPool->Pop(obj);
+			_pPool->Dequeue(obj);
 
 		}
 		return obj;
@@ -95,7 +95,7 @@ namespace MUtil
 	{
 		if (_pPool != nullptr)
 		{
-			_pPool->Push(recycleObj);
+			_pPool->Enqueue(recycleObj);
 		}
 	}
 
@@ -111,7 +111,7 @@ namespace MUtil
 		for (int i = 0; i < _poolSize; ++i)
 		{
 			T obj;
-			_pPool->Push(obj);
+			_pPool->Enqueue(obj);
 		}
 	}
 }// namespace MUtil

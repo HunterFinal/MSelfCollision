@@ -10,6 +10,18 @@
 
 using namespace Core;
 
+using namespace std;
+
+class X
+{
+public:
+	X() { cout << "cons" << endl; }
+	X(const X& rhs) { cout << "copy cons" << endl; }
+	X& operator=(const X& rhs) { cout << "copy oper" << endl; return *this; }
+	X(const X&& rhs) { cout << "move cons" << endl; }
+	X& operator=(const X&& rhs) { cout << "move oper" << endl; return *this;}
+	~X() { cout << "des" << endl; }
+}; 
 
 #ifdef _UNICODE
 	typedef std::wstring STRING;
@@ -35,15 +47,16 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	freopen_s(&stream, "CONIN$", "r", stdin);
 #endif // DEBUG
 	{
-		MUtil::IPool<char> *pool = new Pool<char>(10);
+		MUtil::IPool<int> *pool = new Pool<int>(10);
 
 		for (int i = 0; i < 10; ++i)
 		{
-			char obj = pool->Allocate();
+			int& obj = pool->Allocate();
 
-			obj = (char)('0' + i);
+			cout << "allocated" << endl;
 
 			pool->Recycle(obj);
+
 		}
 
 		delete pool;

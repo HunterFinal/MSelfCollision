@@ -12,21 +12,24 @@ namespace MUtil
 {
 	namespace
 	{
-		constexpr uint16_t RING_BUFFER_MAX_SIZE = 10000;
-		constexpr uint16_t RING_BUFFER_DEFAULT_SIZE = 20;
+		constexpr uint16_t RING_BUFFER_MAX_SIZE = 1000;
+		constexpr uint16_t RING_BUFFER_DEFAULT_SIZE = 10;
+
+		template<typename T>
+		class IFIFO
+		{
+
+		public:
+			virtual void Enqueue(const T& pushInstance) = 0;
+			virtual void Dequeue(T& popInstance) = 0;
+		};
 	}// unnamed namespace
 
 	/// @brief ring buffer
 	/// @tparam T type store in ring buffer
 	template <typename T>
-	class RingBuffer
+	class RingBuffer:public IFIFO<T>
 	{
-		// copy and move disable
-		private:
-			RingBuffer(const RingBuffer& rhs) = delete;
-			RingBuffer& operator= (const RingBuffer& rhs) = delete;
-			RingBuffer(const RingBuffer&& rhs) = delete;
-			RingBuffer& operator= (const RingBuffer&& rhs) = delete;
 
 		// constructor and destructor
 		public:
@@ -39,8 +42,8 @@ namespace MUtil
 
 		// data manipulation method
 		public:
-			void Push(const T& pushInstance);
-			void Pop(T& popInstance);
+			void Enqueue(const T& pushInstance) override final;
+			void Dequeue(T& popInstance) override final;
 
 		// property check method
 		public:
@@ -60,6 +63,14 @@ namespace MUtil
 			int16_t _tailIndex;
 			uint16_t _bufferSize;
 			bool _isFull;
+
+		// copy and move disable
+		private:
+			RingBuffer(const RingBuffer& rhs) = delete;
+			RingBuffer& operator= (const RingBuffer& rhs) = delete;
+			RingBuffer(const RingBuffer&& rhs) = delete;
+			RingBuffer& operator= (const RingBuffer&& rhs) = delete;
+
 	};
 	// End ring buffer
 
@@ -80,17 +91,20 @@ namespace MUtil
 	RingBuffer<T>::~RingBuffer()
 	{
 		{
-			#ifdef DEBUG
-				//std::cout << "Delete ring buffer" << std::endl;
-				/*for (int i = 0; i < _bufferSize; ++i)
-				{
-					std::cout << _pDataBuffer[i] << std::endl;
-				}*/
-			#endif
+			//#ifdef DEBUG
+			//	std::cout << "Delete ring buffer" << std::endl;
+			//	for (int i = 0; i < _bufferSize; ++i)
+			//	{
+			//		std::cout << _pDataBuffer[i] << std::endl;
+			//	}
+			//#endif
 		}
-
+		for (int i = 0; i < _bufferSize; ++i)
+		{
+			_pDataBuffer[i].~T();
+		}
 		// save release memory
-		SAVE_DELETE_ARRAY(_pDataBuffer)
+		SAVE_FREE(_pDataBuffer)
 
 	}
 
@@ -112,14 +126,14 @@ namespace MUtil
 		}
 		// size limitation 10000
 		_bufferSize = (size < RING_BUFFER_MAX_SIZE) ? size : RING_BUFFER_MAX_SIZE;
-		_pDataBuffer = new T[_bufferSize];
+		_pDataBuffer = static_cast<T*>(malloc(sizeof(T) * _bufferSize));
 	}
 
 	/// @brief push obj in ring buffer
 	/// @tparam T type store in ring buffer
 	/// @param pushInstance push obj
 	template<typename T>
-	void RingBuffer<T>::Push(const T& pushInstance)
+	void RingBuffer<T>::Enqueue(const T& pushInstance)
 	{
 		// not initialized
 		if(_pDataBuffer == nullptr)
@@ -137,7 +151,7 @@ namespace MUtil
 		// push obj
 		else
 		{
-			_pDataBuffer[_headIndex] = pushInstance;
+			_pDataBuffer[_headIndex] = std::move(pushInstance);
 			_headIndex = (_headIndex + 1) % _bufferSize;
 			if (_headIndex == _tailIndex)
 			{
@@ -154,7 +168,7 @@ namespace MUtil
 	/// @tparam T type store in ring buffer
 	/// @param popInstance pop obj
 	template<typename T>
-	void RingBuffer<T>::Pop(T& popInstance)
+	void RingBuffer<T>::Dequeue(T& popInstance)
 	{
 		// not initialized
 		if(_pDataBuffer == nullptr)
@@ -172,7 +186,7 @@ namespace MUtil
 		// pop obj
 		else
 		{
-			popInstance = _pDataBuffer[_tailIndex];
+			popInstance = std::move(_pDataBuffer[_tailIndex]);
 			_tailIndex = (_tailIndex + 1) % _bufferSize;
 			_isFull = false;
 			//#ifdef  DEBUG
@@ -190,12 +204,16 @@ namespace MUtil
 	template<typename T>
 	int32_t RingBuffer<T>::Size() const
 	{
-		return	(_tailIndex > _headIndex) ? 
+		if (IsEmpty())
+			return _bufferSize;
 
-				// (true)_tailIndex > _headIndex
-				(_headIndex - _tailIndex + _bufferSize) : 
+		return	(_tailIndex > _headIndex) ?
 
-				// (false)_tailIndex <= _headIndex
-				(_headIndex - _tailIndex);
+			// (true)_tailIndex > _headIndex
+			(_headIndex - _tailIndex + _bufferSize) :
+
+			// (false)_tailIndex <= _headIndex
+			(_headIndex - _tailIndex);
+
 	}
 }// namespace MUtil
