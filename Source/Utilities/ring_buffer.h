@@ -53,6 +53,7 @@ namespace MUtil
 			/// @brief pushable space count
 			/// @return space count
 			int32_t Size() const;
+			T* const GetHeadAddress() const { return _pDataBuffer; }
 			bool IsFull() const { return _isFull; }
 			bool IsEmpty() const { return (_headIndex == _tailIndex) && (!_isFull); }
 

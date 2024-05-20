@@ -2,6 +2,8 @@
 
 #include "ring_buffer.h"
 
+#include <functional>
+
 #ifndef SAVE_RELEASE
 #include "memory_release_def.h"
 #endif // !SAVE_RELEASE
@@ -16,6 +18,7 @@ namespace MUtil
 	public:
 		virtual inline obj& Allocate() const = 0;
 		virtual inline void Recycle(const obj& recycleObj) = 0;
+		virtual inline void InitPool(std::function<obj*(obj* const targetAddress)> factory) = 0;
 	public:
 		virtual ~IPool() {}
 	};
@@ -38,6 +41,7 @@ namespace MUtil
 	public:
 		inline T& Allocate() const override;
 		inline void Recycle(const T& recycleObj) override;
+		inline void InitPool(std::function<T* (T* const targetAddress)> factory) override;
 	// IPool
 
 	// constructor/destructor
@@ -47,7 +51,6 @@ namespace MUtil
 			, _poolSize(size)
 		{
 			_pPool = new RingBuffer<T>();
-			InitPool();
 			//#ifdef DEBUG
 			//	std::cout << "Create pool" << std::endl;
 			//#endif // DEBUG
@@ -62,7 +65,6 @@ namespace MUtil
 
 	// Method
 	private:
-		inline void InitPool();
 
 	// Protected property
 	protected:
@@ -102,7 +104,7 @@ namespace MUtil
 	/// @brief Pool initialize
 	/// @tparam T type
 	template<typename T>
-	inline void Pool<T>::InitPool()
+	inline void Pool<T>::InitPool(std::function<T* (T* const targetAddress)> factory)
 	{
 		// vessel initialize
 		_pPool->Init(_poolSize);
@@ -110,8 +112,9 @@ namespace MUtil
 		// create obj in advance
 		for (int i = 0; i < _poolSize; ++i)
 		{
-			T obj;
-			_pPool->Enqueue(obj);
+			auto obj = factory(_pPool->GetHeadAddress() + i);
+
+			std::cout << obj << std::endl;
 		}
 	}
 }// namespace MUtil

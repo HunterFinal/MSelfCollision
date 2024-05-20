@@ -7,12 +7,13 @@
 #include "Core/Vector/Vector.h"
 #include "Core/Base/Transform2D.h"
 #include "Utilities/pool.h"
+#include "Utilities/factory.h"
 
 using namespace Core;
 
 using namespace std;
 
-class X
+class X:public MUtil::Factory<X>
 {
 public:
 	X() { cout << "cons" << endl; }
@@ -20,7 +21,8 @@ public:
 	X& operator=(const X& rhs) { cout << "copy oper" << endl; return *this; }
 	X(const X&& rhs) { cout << "move cons" << endl; }
 	X& operator=(const X&& rhs) { cout << "move oper" << endl; return *this;}
-	~X() { cout << "des" << endl; }
+	~X() { cout << "des:" << this << endl; }
+
 }; 
 
 #ifdef _UNICODE
@@ -47,16 +49,15 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	freopen_s(&stream, "CONIN$", "r", stdin);
 #endif // DEBUG
 	{
-		MUtil::IPool<int> *pool = new Pool<int>(10);
+		MUtil::IPool<X> *pool = new Pool<X>(10);
+
+		pool->InitPool(X::GetFactory());
 
 		for (int i = 0; i < 10; ++i)
 		{
-			int& obj = pool->Allocate();
-
-			cout << "allocated" << endl;
+			X& obj = pool->Allocate();
 
 			pool->Recycle(obj);
-
 		}
 
 		delete pool;
