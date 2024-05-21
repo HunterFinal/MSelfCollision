@@ -38,7 +38,7 @@ namespace MUtil
 
 		// initialize
 		public:
-			void Init(int size);
+			bool Init(int size);
 
 		// data manipulation method
 		public:
@@ -49,7 +49,7 @@ namespace MUtil
 		public:
 			/// @brief capacity of ring buffer
 			/// @return capacity
-			int32_t Capacity() const;
+			int32_t Capacity() const { return _bufferSize; }
 			/// @brief pushable space count
 			/// @return space count
 			int32_t Size() const;
@@ -113,7 +113,7 @@ namespace MUtil
 	/// @tparam T type store in ring buffer
 	/// @param size 
 	template<typename T>
-	void RingBuffer<T>::Init(int size)
+	bool RingBuffer<T>::Init(int size)
 	{
 		// set default size when receive negative value
 		if (size <= 0)
@@ -128,6 +128,13 @@ namespace MUtil
 		// size limitation 10000
 		_bufferSize = (size < RING_BUFFER_MAX_SIZE) ? size : RING_BUFFER_MAX_SIZE;
 		_pDataBuffer = static_cast<T*>(malloc(sizeof(T) * _bufferSize));
+
+		if(_pDataBuffer == nullptr)
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 	/// @brief push obj in ring buffer
@@ -195,13 +202,6 @@ namespace MUtil
 			//#endif //  DEBUG
 		}
 	}
-
-	template<typename T>
-	int32_t RingBuffer<T>::Capacity() const
-	{
-		return _bufferSize;
-	}
-
 	template<typename T>
 	int32_t RingBuffer<T>::Size() const
 	{

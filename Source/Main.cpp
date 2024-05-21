@@ -13,17 +13,30 @@ using namespace Core;
 
 using namespace std;
 
-class X:public MUtil::Factory<X>
+class X
 {
 public:
 	X() { cout << "cons" << endl; }
+	X(int d) : data(d) { cout << "param cons" << endl;}
 	X(const X& rhs) { cout << "copy cons" << endl; }
 	X& operator=(const X& rhs) { cout << "copy oper" << endl; return *this; }
 	X(const X&& rhs) { cout << "move cons" << endl; }
 	X& operator=(const X&& rhs) { cout << "move oper" << endl; return *this;}
-	~X() { cout << "des:" << this << endl; }
+	~X() { cout << "des:" << this << endl; cout << data << endl;}
 
+private:
+	int data;
 }; 
+
+class FactoryX:public Factory<X>
+{
+	inline X* CreateProduct(void* const targetAddress) override;
+};
+
+X* FactoryX::CreateProduct(void* const targetAddress)
+{
+	return new(reinterpret_cast<X*>(targetAddress)) X(rand() % 10);
+}
 
 #ifdef _UNICODE
 	typedef std::wstring STRING;
@@ -51,17 +64,23 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	{
 		MUtil::IPool<X> *pool = new Pool<X>(10);
 
-		pool->InitPool(X::GetFactory());
+		FactoryX pFactory;
 
+		pool->InitPool(pFactory.GetFactory());
+
+		X obj(100);
 		for (int i = 0; i < 10; ++i)
 		{
-			X& obj = pool->Allocate();
-
+			pool->Allocate(obj);
 			pool->Recycle(obj);
 		}
 
 		delete pool;
 	}
+
+{
+
+}
 #ifdef DEBUG
 	system("pause");
 	// ÉRÉìÉ\Å[ÉãÇâï˙

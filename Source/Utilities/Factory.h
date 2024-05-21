@@ -5,18 +5,23 @@ namespace MUtil
 	template<typename T>
 	class Factory 
 	{
+	private:
+
+		std::function<T*(void* const)> factory;
+
 	protected:
-		virtual inline T* CreateProduct(T* const targetAddress)
+		virtual inline T* CreateProduct(void* const targetAddress)
 		{
 			return new(targetAddress) T;
 		}
 	public:
-		static inline std::function<T*(T* const)> GetFactory()
+		inline std::function<T*(void* const)> GetFactory() const
 		{
-			return &CreateProduct;
+			return factory;
 		}
 
 	public:
+		Factory() : factory(nullptr) { factory = std::bind(&Factory::CreateProduct, this, std::placeholders::_1); }
 		virtual ~Factory() {}
 	};
 }// namespace MUtil

@@ -16,9 +16,10 @@ namespace MUtil
 	class IPool
 	{
 	public:
-		virtual inline obj& Allocate() const = 0;
+		virtual inline void Allocate(obj& allocateObj) const = 0;
 		virtual inline void Recycle(const obj& recycleObj) = 0;
-		virtual inline void InitPool(std::function<obj*(obj* const targetAddress)> factory) = 0;
+		virtual inline void InitPool(std::function<obj*(void* const targetAddress)> factory) = 0;
+		//virtual inline obj* const GetBufferHeadAddress() const = 0;
 	public:
 		virtual ~IPool() {}
 	};
@@ -39,9 +40,11 @@ namespace MUtil
 
 	// interface implements
 	public:
-		inline T& Allocate() const override;
+		inline void Allocate(T& allocateObj) const override;
 		inline void Recycle(const T& recycleObj) override;
-		inline void InitPool(std::function<T* (T* const targetAddress)> factory) override;
+		inline void InitPool(std::function<T* (void* const targetAddress)> factory) override;
+		//inline T* const GetBufferHeadAddress() const override;
+
 	// IPool
 
 	// constructor/destructor
@@ -78,15 +81,12 @@ namespace MUtil
 	/// @tparam T type
 	/// @return ref of allocated obj
 	template <typename T>
-	inline T& Pool<T>::Allocate() const
+	inline void Pool<T>::Allocate(T& allocateObj) const
 	{
-		T obj;
 		if (_pPool != nullptr)
 		{
-			_pPool->Dequeue(obj);
-
+			_pPool->Dequeue(allocateObj);
 		}
-		return obj;
 	}
 
 	/// @brief recycle obj 
@@ -104,17 +104,37 @@ namespace MUtil
 	/// @brief Pool initialize
 	/// @tparam T type
 	template<typename T>
-	inline void Pool<T>::InitPool(std::function<T* (T* const targetAddress)> factory)
+	inline void Pool<T>::InitPool(std::function<T* (void* const targetAddress)> factory)
 	{
 		// vessel initialize
-		_pPool->Init(_poolSize);
-		_poolSize = _pPool->Capacity();
-		// create obj in advance
-		for (int i = 0; i < _poolSize; ++i)
+		if(_pPool->Init(_poolSize))
 		{
-			auto obj = factory(_pPool->GetHeadAddress() + i);
+			_poolSize = _pPool->Capacity();
+			// create obj in advance
+			for (int i = 0; i < _poolSize; ++i)
+			{
+				auto obj = factory(_pPool->GetHeadAddress() + i);
 
-			std::cout << obj << std::endl;
+				#ifdef DEBUG
+					std::cout << obj << std::endl;
+				#endif
+			}
+
 		}
+
 	}
+
+/*
+	template <typename T>
+	inline T* const Pool<T>::GetBufferHeadAddress() const
+	{
+		if (_pPool == nullptr)
+		{
+			return nullptr;
+		}
+
+		return _pPool->GetHeadAddress();
+
+	}
+*/
 }// namespace MUtil
