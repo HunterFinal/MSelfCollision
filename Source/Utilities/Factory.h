@@ -6,54 +6,41 @@ namespace MUtil
 	{
 		constexpr uint16_t FACTORY_MAX_PRODUCT = 1000;
 	}
+
 	template<typename T>
 	class IFactory
 	{
-		public:
-
+	public:
+		virtual inline T GetFactory() const = 0;
 	};
 
-	template<typename T>
-	class Factory 
+	template<typename T,typename Func = std::function<T*(void* const)>>
+	class PlacementNewFactory : public IFactory<Func> 
 	{
 	private:
-		std::function<T*(void* const)> _factory;
-		std::vector<T*> _needReleasePointers;
+		Func _factory;
 
 	protected:
 		virtual inline T* CreateProduct(void* const targetAddress)
 		{
 			return new(targetAddress) T;
 		}
-		/// @brief Create product by new(if delete,please set it to nullptr)
-		/// @return T*
-		virtual inline T* CreateCopyProduct()
-		{
-			if(_needReleasePointers.size() >= FACTORY_MAX_PRODUCT)
-				return nullptr;
-				
-			T* product = new T();
-			_needReleasePointers.push_back(product);
-			return product;
-		}
+
 	public:
-		inline std::function<T*(void* const)> GetFactory() const
+		inline Func GetFactory() const override
 		{
 			return _factory;
 		}
 
 	public:
-		Factory() : _factory(nullptr),_needReleasePointers({}) { _factory = std::bind(&Factory::CreateProduct, this, std::placeholders::_1); }
-		virtual ~Factory() 
-		{
-			for(auto it = _needReleasePointers.begin(); it != _needReleasePointers.end(); ++it)
-			{
-				if(*it != nullptr)
-				{
-					SAVE_DELETE(*it);
-				}
-			}
-			_needReleasePointers.clear();
-		}
+		PlacementNewFactory() : _factory(nullptr) { _factory = std::bind(&PlacementNewFactory::CreateProduct, this, std::placeholders::_1); }
+		virtual ~PlacementNewFactory() {}
 	};
+
+	template<typename T,typename Func = std::function<T*()>>
+	class CopyFactory : public IFactory<Func>
+	{
+
+	};
+	
 }// namespace MUtil

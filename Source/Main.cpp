@@ -28,7 +28,7 @@ private:
 	int data;
 }; 
 
-class FactoryX:public Factory<X>
+class FactoryX:public PlacementNewFactory<X>
 {
 	inline X* CreateProduct(void* const targetAddress) override;
 };
@@ -55,7 +55,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 #endif
 {
 #ifdef DEBUG
-	// ƒRƒ“ƒ\[ƒ‹‚ğŠJ‚­
+	// ï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½
 	AllocConsole();
 	FILE* stream = nullptr;
 	freopen_s(&stream, "CONOUT$", "w", stdout);
@@ -83,7 +83,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 }
 #ifdef DEBUG
 	system("pause");
-	// ƒRƒ“ƒ\[ƒ‹‚ğ‰ğ•ú
+	// ï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	FreeConsole();
 
 #endif // DEBUG
