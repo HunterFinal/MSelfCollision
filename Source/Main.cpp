@@ -16,12 +16,12 @@ using namespace std;
 class X
 {
 public:
-	X() { cout << "cons" << endl; }
+	X() : data(0){ cout << "cons" << endl; }
 	X(int d) : data(d) { cout << "param cons" << endl;}
-	X(const X& rhs) { cout << "copy cons" << endl; }
-	X& operator=(const X& rhs) { cout << "copy oper" << endl; return *this; }
-	X(const X&& rhs) { cout << "move cons" << endl; }
-	X& operator=(const X&& rhs) { cout << "move oper" << endl; return *this;}
+	X(const X& rhs) { data = rhs.data; cout << "copy cons" << endl; }
+	X& operator=(const X& rhs){ cout << "copy oper" << endl; return *this; }
+	X(const X&& rhs) noexcept { cout << "move cons" << endl; }
+	X& operator=(const X&& rhs) noexcept { cout << "move oper" << endl; return *this;}
 	~X() { cout << "des:" << this << endl; cout << data << endl;}
 
 private:
@@ -55,7 +55,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 #endif
 {
 #ifdef DEBUG
-	// ï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½
+	// ƒRƒ“ƒ\[ƒ‹‚ðŠJ‚­
 	AllocConsole();
 	FILE* stream = nullptr;
 	freopen_s(&stream, "CONOUT$", "w", stdout);
@@ -83,7 +83,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 }
 #ifdef DEBUG
 	system("pause");
-	// ï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ƒRƒ“ƒ\[ƒ‹‚ð•Â‚¶‚é
 	FreeConsole();
 
 #endif // DEBUG

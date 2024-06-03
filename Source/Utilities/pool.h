@@ -1,17 +1,22 @@
 #pragma once
 
-#include "ring_buffer.h"
-
 #include <functional>
+
+#include "ring_buffer.h"
 
 #ifndef SAVE_RELEASE
 #include "memory_release_def.h"
 #endif // !SAVE_RELEASE
 
-
 namespace MUtil
 {
-	// IPool (interface)
+	/*
+	// 前方宣言
+	template<typename T>
+	class RingBuffer;
+	*/
+
+	// IPoolインターフェース
 	template <typename obj>
 	class IPool
 	{

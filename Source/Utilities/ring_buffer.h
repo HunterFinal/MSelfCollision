@@ -2,7 +2,10 @@
 #include <cstdint>
 #include <iostream>
 
+
+// インクルード
 #ifndef SAVE_RELEASE
+// メモリ安全解放マクロ定義ヘッダー
 #include "memory_release_def.h"
 #endif // !SAVE_RELEASE
 

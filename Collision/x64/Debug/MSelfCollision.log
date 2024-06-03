@@ -1,3 +1,39 @@
 ﻿  Main.cpp
-D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(92,1): warning C4172: ローカル変数またはテンポラリのアドレスを返します: obj
-  MSelfCollision.vcxproj -> D:\Github Repository\MSelfCollision\x64\Debug\Collision.exe
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(63,4): warning C4150: 'MUtil::RingBuffer<T>' 型を削除するため delete 演算子が呼び出されましたが、定義がありません。
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(63,4): warning C4150:         with
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(63,4): warning C4150:         [
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(63,4): warning C4150:             T=X
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(63,4): warning C4150:         ]
+  (ソース ファイル 'Source/Main.cpp' をコンパイルしています)
+  D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(12,8):
+  'MUtil::RingBuffer<T>' の宣言を確認してください
+          with
+          [
+              T=X
+          ]
+  D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(63,4):
+  テンプレートインスタンス化コンテキスト (最初に最も古いもの) は
+  	D:\Github Repository\MSelfCollision\Source\Main.cpp(65,31):
+  	コンパイル対象の クラス テンプレート インスタンス化 'MUtil::Pool<X>' のリファレンスを確認してください
+  	D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(61,12):
+  	クラス テンプレート メンバー関数 'MUtil::Pool<X>::~Pool(void)' のコンパイル中
+  
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(56,30): error C2027: 認識できない型 'MUtil::RingBuffer<T>' が使われています。
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(56,30): error C2027:         with
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(56,30): error C2027:         [
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(56,30): error C2027:             T=X
+D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(56,30): error C2027:         ]
+  (ソース ファイル 'Source/Main.cpp' をコンパイルしています)
+  D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(12,8):
+  'MUtil::RingBuffer<T>' の宣言を確認してください
+          with
+          [
+              T=X
+          ]
+  D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(56,30):
+  テンプレートインスタンス化コンテキスト (最初に最も古いもの) は
+  	D:\Github Repository\MSelfCollision\Source\Utilities\pool.h(52,3):
+  	クラス テンプレート メンバー関数 'MUtil::Pool<X>::Pool(int)' のコンパイル中
+  		D:\Github Repository\MSelfCollision\Source\Main.cpp(65,25):
+  		'wWinMain' の 'MUtil::Pool<X>::Pool' への最初の参照を参照してください
+  
