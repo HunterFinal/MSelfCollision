@@ -17,14 +17,14 @@ class X
 {
 public:
 	X() : data(0){ cout << "cons" << endl; }
-	X(int d) : data(d) { cout << "param cons" << endl;}
+	X(int d) : data(d) { cout << "param cons :" << data << endl;}
 	X(const X& rhs) { data = rhs.data; cout << "copy cons" << endl; }
 	X& operator=(const X& rhs){ cout << "copy oper" << endl; return *this; }
-	X(const X&& rhs) noexcept { cout << "move cons" << endl; }
-	X& operator=(const X&& rhs) noexcept { cout << "move oper" << endl; return *this;}
+	X(const X&& rhs) noexcept { data = rhs.data; cout << "move cons" << endl; }
+	X& operator=(const X&& rhs) noexcept { data = rhs.data; return *this;}
 	~X() { cout << "des:" << this << endl; cout << data << endl;}
 
-private:
+public:
 	int data;
 }; 
 
@@ -35,7 +35,7 @@ class FactoryX:public PlacementNewFactory<X>
 
 X* FactoryX::CreateProduct(void* const targetAddress)
 {
-	return new(reinterpret_cast<X*>(targetAddress)) X(rand() % 10);
+	return new(reinterpret_cast<X*>(targetAddress)) X(rand() % 100);
 }
 
 #ifdef _UNICODE
@@ -64,11 +64,12 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	{
 		MUtil::IPool<X> *pool = new Pool<X>(10);
 
+		srand(static_cast<unsigned>(time(nullptr)));
 		FactoryX pFactory;
 
 		pool->InitPool(pFactory.GetFactory());
 
-		X obj(100);
+		X obj(0);
 		for (int i = 0; i < 10; ++i)
 		{
 			pool->Allocate(obj);

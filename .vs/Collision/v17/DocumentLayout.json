@@ -68,7 +68,7 @@
               "RelativeDocumentMoniker": "Source\\Utilities\\pool.h",
               "ToolTip": "D:\\Github Repository\\MSelfCollision\\Source\\Utilities\\pool.h",
               "RelativeToolTip": "Source\\Utilities\\pool.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAUAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-13T01:20:17.452Z",
               "IsPinned": true,
@@ -84,8 +84,7 @@
               "RelativeToolTip": "Source\\Utilities\\ring_buffer.h",
               "ViewState": "AQIAAA8AAAAAAAAAAAAAAAsAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-10T03:32:27.046Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-10T03:32:27.046Z"
             },
             {
               "$type": "Document",
@@ -97,8 +96,7 @@
               "RelativeToolTip": "Source\\Main.cpp",
               "ViewState": "AQIAAAcAAAAAAAAAAADgvwsAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-26T07:38:34.189Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T07:38:34.189Z"
             },
             {
               "$type": "Document",
@@ -110,8 +108,7 @@
               "RelativeToolTip": "Source\\Utilities\\factory.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-10T07:14:13.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-10T07:14:13.184Z"
             },
             {
               "$type": "Document",
@@ -123,8 +120,7 @@
               "RelativeToolTip": "Source\\Utilities\\memory_release_def.h",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-09T15:35:20.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-09T15:35:20.467Z"
             },
             {
               "$type": "Document",
@@ -136,8 +132,7 @@
               "RelativeToolTip": "Source\\Utilities\\property.h",
               "ViewState": "AQIAAB4AAAAAAAAAAAAAADIAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-09T14:28:15.009Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-09T14:28:15.009Z"
             },
             {
               "$type": "Document",

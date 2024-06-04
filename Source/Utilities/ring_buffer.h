@@ -1,90 +1,96 @@
 #pragma once
 #include <cstdint>
 #include <iostream>
+#include <mutex>
 
+// --マクロ定義--
 
-// インクルード
+// メモリ解放
 #ifndef SAVE_RELEASE
-// メモリ安全解放マクロ定義ヘッダー
 #include "memory_release_def.h"
 #endif // !SAVE_RELEASE
 
+// スレッドセーフ
+#ifndef THREAD_SAVE
+#include "thread_safe_def.h"
+#endif // !THREAD_SAVE
+
+// コンソールデバッグ用
 #define DEBUG
+
+// --マクロ定義--
+
+
 
 namespace MUtil
 {
 	namespace
 	{
-		constexpr uint16_t RING_BUFFER_MAX_SIZE = 1000;
-		constexpr uint16_t RING_BUFFER_DEFAULT_SIZE = 10;
+		constexpr uint32_t RING_BUFFER_MAX_CAPACITY = 1000;
+		constexpr uint32_t RING_BUFFER_DEFAULT_CAPACITY = 20;
 
 		template<typename T>
 		class IFIFO
 		{
-
-		public:
-			virtual void Enqueue(const T& pushInstance) = 0;
-			virtual void Dequeue(T& popInstance) = 0;
+			public:
+				virtual void Enqueue(const T& pushInstance) = 0;
+				virtual void Dequeue(T& popInstance) = 0;
 		};
 	}// unnamed namespace
 
-	/// @brief ring buffer
-	/// @tparam T type store in ring buffer
+	/// @brief RingBuffer
 	template <typename T>
 	class RingBuffer:public IFIFO<T>
 	{
-
-		// constructor and destructor
+		// コンストラクタとデストラクタ
 		public:
 			RingBuffer();
 			~RingBuffer();
 
-		// initialize
+		// 初期化
 		public:
 			bool Init(int size);
 
-		// data manipulation method
+		// データ操作
 		public:
 			void Enqueue(const T& pushInstance) override final;
 			void Dequeue(T& popInstance) override final;
 
-		// property check method
+		// データ検索
 		public:
-			/// @brief capacity of ring buffer
-			/// @return capacity
-			int32_t Capacity() const { return _bufferSize; }
-			/// @brief pushable space count
-			/// @return space count
-			int32_t Size() const;
-			T* const GetHeadAddress() const { return _pDataBuffer; }
-			bool IsFull() const { return _isFull; }
-			bool IsEmpty() const { return (_headIndex == _tailIndex) && (!_isFull); }
+			uint32_t GetCapacity() const { return _capacity; }
+			uint32_t GetCount() const { return _count; }
+			uint32_t GetUsedCount() const { return _capacity - _count; }
 
-		// private property
+			T* const GetHeadAddress() const { return _pDataBuffer; }
+			bool IsFull() const { return ((_tailIndex + 1) % _capacity) == _headIndex; }
+			bool IsEmpty() const { return (_headIndex == _tailIndex); }
+
+		// プロパティ
 		private:
 			T* _pDataBuffer;
-			int16_t _headIndex;
-			int16_t _tailIndex;
-			uint16_t _bufferSize;
-			bool _isFull;
+			uint32_t _headIndex;
+			uint32_t _tailIndex;
+			uint32_t _capacity;
+			uint32_t _count;
+			std::mutex _mutex;
 
-		// copy and move disable
+		// コピー禁止
 		private:
 			RingBuffer(const RingBuffer& rhs) = delete;
 			RingBuffer& operator= (const RingBuffer& rhs) = delete;
-			RingBuffer(const RingBuffer&& rhs) = delete;
-			RingBuffer& operator= (const RingBuffer&& rhs) = delete;
-
 	};
-	// End ring buffer
+	// End RingBuffer
+
+#pragma region RingBuffer Definition
 
 	template<typename T>
 	RingBuffer<T>::RingBuffer()
 		: _pDataBuffer(nullptr)
 		, _headIndex(0)
 		, _tailIndex(0)
-		, _bufferSize(0)
-		, _isFull(false)
+		, _capacity(0)
+		, _count(0)
 	{
 		//#ifdef DEBUG
 		//	std::cout << "Create ring buffer" << std::endl;
@@ -103,7 +109,7 @@ namespace MUtil
 			//	}
 			//#endif
 		}
-		for (int i = 0; i < _bufferSize; ++i)
+		for (int i = 0; i < _capacity; ++i)
 		{
 			_pDataBuffer[i].~T();
 		}
@@ -114,28 +120,41 @@ namespace MUtil
 
 	/// @brief ring buffer initialize (call this method before use)
 	/// @tparam T type store in ring buffer
-	/// @param size 
+	/// @param capacity 
 	template<typename T>
-	bool RingBuffer<T>::Init(int size)
+	bool RingBuffer<T>::Init(int capacity)
 	{
-		// set default size when receive negative value
-		if (size <= 0)
+		// set default capacity when receive negative value
+		if (capacity <= 0)
 		{
-			_bufferSize = RING_BUFFER_DEFAULT_SIZE;
-
+			_capacity = RING_BUFFER_DEFAULT_CAPACITY;
 			//#ifdef DEBUG
-			//	std::cout << "receive negative value,use default size" << std::endl;
+			//	std::cout << "receive negative value,use default size " << RING_BUFFER_DEFAULT_SIZE << std::endl;
 			//#endif
-
 		}
-		// size limitation 10000
-		_bufferSize = (size < RING_BUFFER_MAX_SIZE) ? size : RING_BUFFER_MAX_SIZE;
-		_pDataBuffer = static_cast<T*>(malloc(sizeof(T) * _bufferSize));
+		// size limitation RING_BUFFER_MAX_SIZE
+		else if(capacity > RING_BUFFER_MAX_CAPACITY)
+		{
+			_capacity = RING_BUFFER_MAX_CAPACITY;
+			//#ifdef DEBUG
+			//	std::cout << "receive exceeded value,use max size " << RING_BUFFER_MAX_SIZE << std::endl;
+			//#endif
+		}
+		else
+		{
+			_capacity = (uint32_t)capacity;
+		}
+
+		// メモリ確保
+		_pDataBuffer = static_cast<T*>(malloc(sizeof(T) * _capacity));
 
 		if(_pDataBuffer == nullptr)
 		{
 			return false;
 		}
+
+		++_headIndex;
+		_count = _capacity;
 
 		return true;
 	}
@@ -154,7 +173,7 @@ namespace MUtil
 		if (IsFull())
 		{
 			#ifdef  DEBUG
-			std::cout << "Ring buffer is full" << std::endl;
+				std::cout << "Ring buffer is full" << std::endl;
 			#endif //  DEBUG
 			return;
 		}
@@ -162,15 +181,20 @@ namespace MUtil
 		// push obj
 		else
 		{
-			_pDataBuffer[_headIndex] = std::move(pushInstance);
-			_headIndex = (_headIndex + 1) % _bufferSize;
-			if (_headIndex == _tailIndex)
-			{
-				_isFull = true;
-			}
-			//#ifdef  DEBUG
-			//	std::cout << "Ring buffer push method called" << std::endl;
-			//#endif //  DEBUG
+			LOCK(_mutex)
+
+			_tailIndex = (_tailIndex + 1) % _capacity;
+			_pDataBuffer[_tailIndex] = std::move(pushInstance);
+
+			++count;
+			
+			/*
+			#ifdef  DEBUG
+				std::cout << "Ring buffer push method called" << std::endl;
+				std::cout << "Enqueue Index :" << _tailIndex << std::endl;
+			#endif //  DEBUG
+			*/
+
 
 		}
 	}
@@ -197,27 +221,21 @@ namespace MUtil
 		// pop obj
 		else
 		{
-			popInstance = std::move(_pDataBuffer[_tailIndex]);
-			_tailIndex = (_tailIndex + 1) % _bufferSize;
-			_isFull = false;
-			//#ifdef  DEBUG
-			//	std::cout << "Ring buffer pop method called" << std::endl;
-			//#endif //  DEBUG
+			LOCK(_mutex)
+
+			popInstance = std::move(_pDataBuffer[_headIndex]);
+			/*
+			#ifdef  DEBUG
+				std::cout << "Ring buffer pop method called" << std::endl;
+			  	std::cout << "Pop Index :" << _headIndex << std::endl;
+			#endif //  DEBUG
+			*/
+			_headIndex = (_headIndex + 1) % _capacity;
+
+			--count;
 		}
 	}
-	template<typename T>
-	int32_t RingBuffer<T>::Size() const
-	{
-		if (IsEmpty())
-			return _bufferSize;
 
-		return	(_tailIndex > _headIndex) ?
+#pragma endregion // RingBuffer Definition
 
-			// (true)_tailIndex > _headIndex
-			(_headIndex - _tailIndex + _bufferSize) :
-
-			// (false)_tailIndex <= _headIndex
-			(_headIndex - _tailIndex);
-
-	}
 }// namespace MUtil

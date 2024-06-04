@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <mutex>
 
 #include "ring_buffer.h"
 
@@ -10,11 +11,6 @@
 
 namespace MUtil
 {
-	/*
-	// 前方宣言
-	template<typename T>
-	class RingBuffer;
-	*/
 
 	// IPoolインターフェース
 	template <typename obj>
@@ -120,9 +116,9 @@ namespace MUtil
 			{
 				auto obj = factory(_pPool->GetHeadAddress() + i);
 
-				#ifdef DEBUG
-					std::cout << obj << std::endl;
-				#endif
+				//#ifdef DEBUG
+				//	std::cout << obj << std::endl;
+				//#endif
 			}
 
 		}
