@@ -110,7 +110,7 @@ namespace MUtil
 		// vessel initialize
 		if(_pPool->Init(_poolSize))
 		{
-			_poolSize = _pPool->Capacity();
+			_poolSize = _pPool->GetCapacity();
 			// create obj in advance
 			for (int i = 0; i < _poolSize; ++i)
 			{

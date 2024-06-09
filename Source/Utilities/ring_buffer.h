@@ -62,13 +62,14 @@ namespace MUtil
 			uint32_t GetCount() const { return _count; }
 			uint32_t GetUsedCount() const { return _capacity - _count; }
 
-			T* const GetHeadAddress() const { return _pDataBuffer; }
+			T* const GetHeadAddress() const { return _pData; }
 			bool IsFull() const { return ((_tailIndex + 1) % _capacity) == _headIndex; }
 			bool IsEmpty() const { return (_headIndex == _tailIndex); }
 
 		// プロパティ
 		private:
-			T* _pDataBuffer;
+			T* _pData;
+			uint8_t* _pAddBuffer;
 			uint32_t _headIndex;
 			uint32_t _tailIndex;
 			uint32_t _capacity;
@@ -86,7 +87,8 @@ namespace MUtil
 
 	template<typename T>
 	RingBuffer<T>::RingBuffer()
-		: _pDataBuffer(nullptr)
+		: _pData(nullptr)
+		, _pAddBuffer(nullptr)
 		, _headIndex(0)
 		, _tailIndex(0)
 		, _capacity(0)
@@ -111,10 +113,10 @@ namespace MUtil
 		}
 		for (int i = 0; i < _capacity; ++i)
 		{
-			_pDataBuffer[i].~T();
+			_pData[i].~T();
 		}
 		// save release memory
-		SAVE_FREE(_pDataBuffer)
+		SAVE_FREE(_pData)
 
 	}
 
@@ -146,9 +148,9 @@ namespace MUtil
 		}
 
 		// メモリ確保
-		_pDataBuffer = static_cast<T*>(malloc(sizeof(T) * _capacity));
+		_pData = static_cast<T*>(malloc(sizeof(T) * _capacity));
 
-		if(_pDataBuffer == nullptr)
+		if(_pData == nullptr)
 		{
 			return false;
 		}
@@ -166,7 +168,7 @@ namespace MUtil
 	void RingBuffer<T>::Enqueue(const T& pushInstance)
 	{
 		// not initialized
-		if(_pDataBuffer == nullptr)
+		if(_pData == nullptr)
 			return;
 
 		// buffer full
@@ -184,9 +186,9 @@ namespace MUtil
 			LOCK(_mutex)
 
 			_tailIndex = (_tailIndex + 1) % _capacity;
-			_pDataBuffer[_tailIndex] = std::move(pushInstance);
+			_pData[_tailIndex] = std::move(pushInstance);
 
-			++count;
+			++_count;
 			
 			/*
 			#ifdef  DEBUG
@@ -206,7 +208,7 @@ namespace MUtil
 	void RingBuffer<T>::Dequeue(T& popInstance)
 	{
 		// not initialized
-		if(_pDataBuffer == nullptr)
+		if(_pData == nullptr)
 			return;
 			
 		// buffer empty
@@ -223,7 +225,7 @@ namespace MUtil
 		{
 			LOCK(_mutex)
 
-			popInstance = std::move(_pDataBuffer[_headIndex]);
+			popInstance = std::move(_pData[_headIndex]);
 			/*
 			#ifdef  DEBUG
 				std::cout << "Ring buffer pop method called" << std::endl;
@@ -232,7 +234,7 @@ namespace MUtil
 			*/
 			_headIndex = (_headIndex + 1) % _capacity;
 
-			--count;
+			--_count;
 		}
 	}
 
