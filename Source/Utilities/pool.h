@@ -3,24 +3,60 @@
 #include <functional>
 #include <mutex>
 
-#include "ring_buffer.h"
+#define DEBUG
 
 #ifndef SAVE_RELEASE
 #include "memory_release_def.h"
 #endif // !SAVE_RELEASE
 
+// スレッドセーフ
+#ifndef THREAD_SAVE
+#include "thread_safe_def.h"
+#endif // !THREAD_SAVE
+
 namespace MUtil
 {
 
+	namespace
+	{
+		constexpr uint32_t MAX_POOL_SIZE = 1000;
+		constexpr uint32_t DEFAULT_POOL_SIZE = 20;
+
+		inline void SetValidSize(int& size)
+		{
+			if(size <= 0)
+			{
+				#ifdef DEBUG
+					std::cout << "Pool receive invalid size.\nSet to default value = " << DEFAULT_POOL_SIZE << '\n';
+				#endif
+				size = (int)DEFAULT_POOL_SIZE;
+			}
+
+			else if(size > MAX_POOL_SIZE)
+			{
+				#ifdef DEBUG
+					std::cout << "Pool receive too big size.\nSet to max value = " << MAX_POOL_SIZE << '\n';
+				#endif
+
+				size = (int)MAX_POOL_SIZE;
+			}	
+		}
+	}// nameless namespace
 	// IPoolインターフェース
 	template <typename obj>
 	class IPool
 	{
 	public:
-		virtual inline void Allocate(obj& allocateObj) const = 0;
-		virtual inline void Recycle(const obj& recycleObj) = 0;
+		virtual inline obj* Allocate() = 0;
+		virtual inline void Recycle(obj* recycleObj) = 0;
 		virtual inline void InitPool(std::function<obj*(void* const targetAddress)> factory) = 0;
-		//virtual inline obj* const GetBufferHeadAddress() const = 0;
+
+	public:
+		virtual inline bool IsEmpty() = 0;
+		virtual inline bool IsFull() = 0;
+		virtual inline int GetCapacity() = 0;
+		virtual inline int GetCount() = 0;
+
 	public:
 		virtual ~IPool() {}
 	};
@@ -32,36 +68,55 @@ namespace MUtil
 	class Pool : public IPool<T>
 	{
 
-	// copy and move disable
+	// copy disable
 	private:
 		Pool(const Pool& rhs) = delete;
 		Pool& operator = (const Pool& rhs) = delete;
-		Pool(const Pool&& rhs) = delete;
-		Pool& operator = (const Pool&& rhs) = delete;
 
 	// interface implements
 	public:
-		inline void Allocate(T& allocateObj) const override;
-		inline void Recycle(const T& recycleObj) override;
+		inline T* Allocate() override;
+		inline void Recycle(T* recycleObj) override;
 		inline void InitPool(std::function<T* (void* const targetAddress)> factory) override;
-		//inline T* const GetBufferHeadAddress() const override;
 
 	// IPool
 
+	public:
+		inline bool IsEmpty() override { return _headIndex == _tailIndex;}
+		inline bool IsFull() override {return (_tailIndex + 1) % _poolSize == _headIndex;}
+		inline int GetCapacity() override { return _poolSize;}
+		inline int GetCount() override
+		{
+			return 0;
+		}
+
 	// constructor/destructor
 	public:
-		explicit Pool(int size) 
+		explicit Pool(int size = 0) 
 			: _pPool(nullptr)
-			, _poolSize(size)
+			, _poolSize(0)
+			, _headIndex(0)
+			, _tailIndex(0)
 		{
-			_pPool = new RingBuffer<T>();
-			//#ifdef DEBUG
-			//	std::cout << "Create pool" << std::endl;
-			//#endif // DEBUG
+			// サイズを合理的な値にする
+			SetValidSize(size);
+			_poolSize = (uint32_t)size;
+			#ifdef DEBUG
+				std::cout << "Create pool" << std::endl;
+			#endif // DEBUG
 		}
 		virtual ~Pool()
 		{
-			SAVE_DELETE(_pPool)
+			LOCK(_mutex);
+
+			for(int i = 0;i < _poolSize; ++i)
+			{
+				_pPool[i].~T();
+			}
+
+			SAVE_FREE(_pPool);
+			SAVE_FREE(_pAddressBuffer);
+
 			#ifdef DEBUG
 				std::cout << "Delete pool" << std::endl;
 			#endif // DEBUG
@@ -72,8 +127,14 @@ namespace MUtil
 
 	// Protected property
 	protected:
-		RingBuffer<T> *_pPool;
-		int _poolSize;
+		T *_pPool;
+		T **_pAddressBuffer;
+		uint16_t _poolSize;
+		uint16_t _headIndex;
+		uint16_t _tailIndex;
+
+	private:
+		std::mutex _mutex;
 	// 
 	};
 	// End Pool  
@@ -82,23 +143,48 @@ namespace MUtil
 	/// @tparam T type
 	/// @return ref of allocated obj
 	template <typename T>
-	inline void Pool<T>::Allocate(T& allocateObj) const
+	inline T* Pool<T>::Allocate()
 	{
-		if (_pPool != nullptr)
+		LOCK(_mutex);
+
+		if(IsEmpty())
 		{
-			_pPool->Dequeue(allocateObj);
+			#ifdef  DEBUG
+				std::cout << "Can't allocate object from pool because pool is EMPTY!!\n" ;
+			#endif //  DEBUG
+			return nullptr;
 		}
+
+		if (_pAddressBuffer != nullptr)
+		{
+			T* alloc = _pAddressBuffer[_headIndex];
+			_headIndex = (_headIndex + 1) % _poolSize;
+
+			return alloc;
+		}
+
+		return nullptr;
 	}
 
 	/// @brief recycle obj 
 	/// @tparam T type
 	/// @param recycleObj 
 	template <typename T>
-	inline void Pool<T>::Recycle(const T& recycleObj)
+	inline void Pool<T>::Recycle(T* recycleObj)
 	{
-		if (_pPool != nullptr)
+		LOCK(_mutex);
+
+		if(IsFull())
 		{
-			_pPool->Enqueue(recycleObj);
+			#ifdef  DEBUG
+				std::cout << "Can't recycle object into pool because pool is FULL!!\n";
+			#endif //  DEBUG
+			return;
+		}
+		if (_pAddressBuffer != nullptr)
+		{
+			_tailIndex = (_tailIndex + 1) % _poolSize;
+			_pAddressBuffer[_tailIndex] = recycleObj;
 		}
 	}
 
@@ -108,34 +194,34 @@ namespace MUtil
 	inline void Pool<T>::InitPool(std::function<T* (void* const targetAddress)> factory)
 	{
 		// vessel initialize
-		if(_pPool->Init(_poolSize))
+		_pPool = static_cast<T*>(malloc(sizeof(T) * _poolSize));
+
+		// On 32-bit systems, sizeof(void*) = 4 bytes. On 64-bit systems, sizeof(void*) = 8 bytes.
+		_pAddressBuffer = static_cast<T**>(malloc(sizeof(void*) * _poolSize));
+
+		if(_pPool != nullptr  && _pAddressBuffer != nullptr)
 		{
-			_poolSize = _pPool->GetCapacity();
 			// create obj in advance
 			for (int i = 0; i < _poolSize; ++i)
 			{
-				auto obj = factory(_pPool->GetHeadAddress() + i);
-
+				_pAddressBuffer[i] = factory(_pPool + i);
 				//#ifdef DEBUG
 				//	std::cout << obj << std::endl;
 				//#endif
 			}
 
+			_headIndex = 1;
+
 		}
-
-	}
-
-/*
-	template <typename T>
-	inline T* const Pool<T>::GetBufferHeadAddress() const
-	{
-		if (_pPool == nullptr)
+		else
 		{
-			return nullptr;
+			SAVE_FREE(_pPool);
+			SAVE_FREE(_pAddressBuffer);
+
+			#ifdef  DEBUG
+				std::cout << "Can't init pool because memory is not enough!!\n";
+			#endif //  DEBUG
 		}
-
-		return _pPool->GetHeadAddress();
-
 	}
-*/
+
 }// namespace MUtil

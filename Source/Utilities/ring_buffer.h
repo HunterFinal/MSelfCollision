@@ -69,7 +69,6 @@ namespace MUtil
 		// プロパティ
 		private:
 			T* _pData;
-			uint8_t* _pAddBuffer;
 			uint32_t _headIndex;
 			uint32_t _tailIndex;
 			uint32_t _capacity;
@@ -88,7 +87,6 @@ namespace MUtil
 	template<typename T>
 	RingBuffer<T>::RingBuffer()
 		: _pData(nullptr)
-		, _pAddBuffer(nullptr)
 		, _headIndex(0)
 		, _tailIndex(0)
 		, _capacity(0)

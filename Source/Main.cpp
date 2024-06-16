@@ -62,21 +62,23 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	freopen_s(&stream, "CONIN$", "r", stdin);
 #endif // DEBUG
 	{
-		MUtil::IPool<X> *pool = new Pool<X>(10);
+		MUtil::IPool<X> *pool = new Pool<X>(0);
 
 		srand(static_cast<unsigned>(time(nullptr)));
 		FactoryX pFactory;
 
 		pool->InitPool(pFactory.GetFactory());
 
-		X obj(0);
-		for (int i = 0; i < 10; ++i)
+		X* obj;
+
+		for (int i = 0; i < pool->GetCapacity(); ++i)
 		{
-			pool->Allocate(obj);
+			obj = pool->Allocate();
 			pool->Recycle(obj);
 		}
 
 		delete pool;
+
 	}
 
 {
