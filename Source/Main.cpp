@@ -8,7 +8,6 @@
 #include "Core/Base/Transform2D.h"
 #include "Utilities/pool.h"
 #include "Utilities/factory.h"
-#include "Utilities/Singleton.h"
 
 using namespace Core;
 
@@ -90,9 +89,6 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	}
 
 	// singleton test
-	{
-		TestSingleton::GetInstance().print();
-	}
 
 {
 
