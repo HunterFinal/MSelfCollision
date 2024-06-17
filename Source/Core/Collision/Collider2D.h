@@ -1,23 +1,38 @@
 #pragma once
 
-struct Vector2;
+#include "../Vector/Vector.h"
+
 enum class ECollisionShape;
 
 namespace Core
 {
-		class Collider2D
+	class Collider2D
 	{
 
 	public:
-		virtual bool IsHit() = 0;	
+		virtual bool IsHit(Collider2D *other) = 0;	
 
+	// 	コンストラクタ・デストラクタ
 	public:
 		Collider2D();
 		virtual ~Collider2D();
 
+	// コピー・ムーブ
+	public:
+		// コピー
+		Collider2D(const Collider2D& rhs);
+		Collider2D& operator =(const Collider2D& rhs);
+
+		// ムーブ
+		Collider2D(Collider2D&& rhs) noexcept;
+		Collider2D& operator =(Collider2D&& rhs) noexcept;
+
+	public:
+		// 
+
 	protected:
 		ECollisionShape _shape;
-		Vector2* _center;
+		Vector2 _center;
 
 	};
 

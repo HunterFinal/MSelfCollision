@@ -8,6 +8,7 @@
 #include "Core/Base/Transform2D.h"
 #include "Utilities/pool.h"
 #include "Utilities/factory.h"
+#include "Utilities/Singleton.h"
 
 using namespace Core;
 
@@ -61,6 +62,8 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	freopen_s(&stream, "CONOUT$", "w", stdout);
 	freopen_s(&stream, "CONIN$", "r", stdin);
 #endif // DEBUG
+
+	// pool test
 	{
 		MUtil::IPool<X> *pool = new Pool<X>(0);
 
@@ -84,6 +87,11 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 
 		delete pool;
 
+	}
+
+	// singleton test
+	{
+		TestSingleton::GetInstance().print();
 	}
 
 {

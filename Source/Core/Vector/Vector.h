@@ -63,28 +63,34 @@ namespace Core
 		static const Vector2 NegativeInfinity;
 
 	// Constructor
-	//		: x(value)		, y(value)
+	//		: x(value)		
+	//		, y(value)
 	public:
 		Vector2()											
-			: x(0.f)	, y(0.f)
+			: x(0.f)	
+			, y(0.f)
 		{}
 
 		explicit Vector2(const float _x)					
-			: x(_x)			, y(0.f)	
+			: x(_x)			
+			, y(0.f)	
 		{}
 
 		explicit Vector2(const float _x, 
 						 const float _y)	noexcept
-			: x(_x)			, y(_y)			
+			: x(_x)			
+			, y(_y)			
 		{}
 
 		// Copy
 		Vector2(const Vector2& other)						
-			: x(other.x)	, y(other.y)	
+			: x(other.x)	
+			, y(other.y)	
 		{}
 		// Move
 		Vector2(Vector2&& other) noexcept					
-			: x(other.x)	, y(other.y)	
+			: x(other.x)	
+			, y(other.y)	
 		{	
 			other.x = 0.f;
 			other.y = 0.f; 
@@ -192,23 +198,36 @@ namespace Core
 
 	// ---------------------------------------------------------
 	// Constructor and Operator overload
-	//		: x(value)			, y(value)			, z(value)
+	//		: x(value)			
+	// 		, y(value)			
+	// 		, z(value)
 	// ---------------------------------------------------------
 	public:
 		Vector3()															
-			: x(0.f)		, y(0.f)		, z(0.f)
+			: x(0.f)		
+			, y(0.f)		
+			, z(0.f)
 		{}
+
 		explicit Vector3(const float _x)									
-			: x(_x)				, y(0.f)		, z(0.f)
+			: x(_x)				
+			, y(0.f)		
+			, z(0.f)
 		{}
+
 		explicit Vector3(const float _x, 
 						 const float _y)					
-			: x(_x)				, y(_y)				, z(0.f)
+			: x(_x)				
+			, y(_y)				
+			, z(0.f)
 		{}
-		constexpr Vector3(const float _x, 
+
+		explicit Vector3(const float _x, 
 						 const float _y,
 						 const float _z)	noexcept
-			: x(_x)				, y(_y)				, z(_z)					
+			: x(_x)				
+			, y(_y)				
+			, z(_z)					
 		{}
 		explicit Vector3(const Vector2 _v2, const float _z)					
 			: x(_v2.x)			, y(_v2.y)			, z(_z)				
@@ -216,15 +235,21 @@ namespace Core
 
 		// Copy
 		Vector3(const Vector2& other)										
-			: x(other.x)		, y(other.y)		, z(0.f)
+			: x(other.x)		
+			, y(other.y)		
+			, z(0.f)
 		{}
 		Vector3(const Vector3& other)										
-			: x(other.x)		, y(other.y)		, z(other.z)	
+			: x(other.x)		
+			, y(other.y)		
+			, z(other.z)	
 		{}
 
 		// Move
 		Vector3(Vector3&& other) noexcept									
-			: x(other.x)		, y(other.y)		, z(other.z)	
+			: x(other.x)		
+			, y(other.y)		
+			, z(other.z)	
 		{ 
 			other.x = 0.f;
 			other.y = 0.f;
