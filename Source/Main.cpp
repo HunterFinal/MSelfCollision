@@ -74,8 +74,13 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 		for (int i = 0; i < pool->GetCapacity(); ++i)
 		{
 			obj = pool->Allocate();
-			pool->Recycle(obj);
+			if(obj != nullptr)
+			{
+				pool->Recycle(obj);
+			}
 		}
+
+		obj = pool->Allocate();
 
 		delete pool;
 

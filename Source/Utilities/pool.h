@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <mutex>
+#include <bitset>
 
 #define DEBUG
 
@@ -82,8 +83,8 @@ namespace MUtil
 	// IPool
 
 	public:
-		inline bool IsEmpty() override { return _headIndex == _tailIndex;}
-		inline bool IsFull() override {return (_tailIndex + 1) % _poolSize == _headIndex;}
+		inline bool IsEmpty() override { return _headIndex == _tailIndex && (_rwSign == 0b0);}
+		inline bool IsFull() override {	return _headIndex == _tailIndex && (_rwSign == 0b1);}
 		inline int GetCapacity() override { return _poolSize;}
 		inline int GetCount() override
 		{
@@ -97,6 +98,7 @@ namespace MUtil
 			, _poolSize(0)
 			, _headIndex(0)
 			, _tailIndex(0)
+			, _rwSign(0b0)
 		{
 			// サイズを合理的な値にする
 			SetValidSize(size);
@@ -135,6 +137,7 @@ namespace MUtil
 
 	private:
 		std::mutex _mutex;
+		std::bitset<1> _rwSign;	//最後の操作の標識		0(読み込み)	1(書き込み)
 	// 
 	};
 	// End Pool  
@@ -159,6 +162,7 @@ namespace MUtil
 		{
 			T* alloc = _pAddressBuffer[_headIndex];
 			_headIndex = (_headIndex + 1) % _poolSize;
+			_rwSign = 0b0;
 
 			return alloc;
 		}
@@ -183,8 +187,9 @@ namespace MUtil
 		}
 		if (_pAddressBuffer != nullptr)
 		{
-			_tailIndex = (_tailIndex + 1) % _poolSize;
 			_pAddressBuffer[_tailIndex] = recycleObj;
+			_tailIndex = (_tailIndex + 1) % _poolSize;	
+			_rwSign = 0b1;
 		}
 	}
 
@@ -209,9 +214,7 @@ namespace MUtil
 				//	std::cout << obj << std::endl;
 				//#endif
 			}
-
-			_headIndex = 1;
-
+			_rwSign = 0b1;
 		}
 		else
 		{
