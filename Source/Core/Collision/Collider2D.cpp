@@ -1,10 +1,11 @@
 #include "Collider2D.h"
 
-#include "../Vector/Vector.h"
+#include "../Vector/vector.h"
 #include "MCollisionFunction.h"
 
-namespace Core
+namespace MSelfCollision
 {
+ 
     Collider2D::Collider2D()
             : _shape(ECollisionShape::None)
             , _center({})
@@ -16,7 +17,7 @@ namespace Core
     {
         // –³Œø‚Ì’l‚É‚·‚é
         _shape = ECollisionShape::None;
-        _center = Vector2::PositiveInfinity;
+        _center = Core::Vector2::PositiveInfinity;
     }
 
     Collider2D::Collider2D(const Collider2D &rhs)
@@ -41,7 +42,7 @@ namespace Core
         _center = std::move(rhs._center);
 
         rhs._shape = ECollisionShape::None;
-        rhs._center = Vector2::PositiveInfinity;
+        rhs._center = Core::Vector2::PositiveInfinity;
     }
 
     Collider2D& Collider2D::operator=(Collider2D &&rhs) noexcept
@@ -51,7 +52,7 @@ namespace Core
         _center = std::move(rhs._center);
 
         rhs._shape = ECollisionShape::None;
-        rhs._center = Vector2::PositiveInfinity;
+        rhs._center = Core::Vector2::PositiveInfinity;
 
         return *this;        
     }

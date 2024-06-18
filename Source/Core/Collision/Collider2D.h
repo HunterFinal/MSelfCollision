@@ -1,12 +1,26 @@
+// ---------------------------------------------------------------------------------------------------------------------------------------
+// File name:           collider2D.h
+// Version:             alpha_2.0
+// Description:         collider2D class
+// Namespace:           MSelfCollision
+// Note:                ...
+//
+// Update:              2024/06/18  Create
+//
+// Author:              MAI ZHICONG
+// ---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 #pragma once
 
-#include "../Vector/Vector.h"
+#include "../Vector/vector.h"
 
 enum class ECollisionShape;
 
 struct Collision2D;
 
-namespace Core
+namespace MSelfCollision
 {
 	class Collider2D
 	{
@@ -34,17 +48,17 @@ namespace Core
 	// Getter
 	public:
 		ECollisionShape GetShape() const;
-		Vector2 GetCenter2D() const;
+		Core::Vector2 GetCenter2D() const;
 		bool IsActive() const { return _bActive;}
 
 	// Setter
 	public: 
-		void SetCenter2D(const Vector2& center);
+		void SetCenter2D(const Core::Vector2& center);
 		void SetActive(bool bValue);
 
 	protected:
 		ECollisionShape _shape;
-		Vector2 _center;
+		Core::Vector2 _center;
 
 	private:
 		bool _bActive;
@@ -57,7 +71,7 @@ namespace Core
 		BoxCollider2D();
 		~BoxCollider2D() override;
 	private:
-		Vector2 _size;
+		Core::Vector2 _size;
 
 	};
 
