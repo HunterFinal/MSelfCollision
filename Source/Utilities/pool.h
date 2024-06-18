@@ -74,7 +74,6 @@ namespace MUtil
 	template<typename T>
 	class Pool : public IPool<T>
 	{
-
 	// copy disable
 	private:
 		Pool(const Pool& rhs) = delete;

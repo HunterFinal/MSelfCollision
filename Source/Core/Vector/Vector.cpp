@@ -9,10 +9,9 @@
 //						:2024/04/27		Rewrite rules of operator overload
 // ------------------------------------------------------------------------------------
 
+#include "vector.h"
 
 #include <cmath>
-
-#include "vector.h"
 
 #ifndef _FLOAT_TOLERANCE
 

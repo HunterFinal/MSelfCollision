@@ -77,7 +77,7 @@ namespace Core
 		{}
 
 		explicit Vector2(const float _x, 
-							const float _y)	noexcept
+							const float _y)	
 			: x(_x)			
 			, y(_y)			
 		{}

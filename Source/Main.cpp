@@ -66,7 +66,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 
 	// pool test
 	{
-		MUtil::IPool<X> *pool = new MUtil::Pool<X>(0);
+		MUtil::IPool<X> *pool = new MUtil::Pool<X>(10);
 
 		srand(static_cast<unsigned>(time(nullptr)));
 		FactoryX pFactory;
