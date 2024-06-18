@@ -16,11 +16,7 @@
 #endif // !THREAD_SAVE
 
 // コンソールデバッグ用
-#define DEBUG
-
-// --マクロ定義--
-
-
+#define DEBUG 
 
 namespace MUtil
 {

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "Core/Vector/Vector.h"
+#include "Core/Vector/vector.h"
 #include "Core/Base/Transform2D.h"
 #include "Utilities/pool.h"
 #include "Utilities/factory.h"
@@ -12,6 +12,8 @@
 using namespace Core;
 
 using namespace std;
+
+using namespace MDesignPattern;
 
 class X
 {
@@ -28,7 +30,7 @@ public:
 	int data;
 }; 
 
-class FactoryX:public PlacementNewFactory<X>
+class FactoryX:public MFactory::PlacementNewFactory<X>
 {
 	inline X* CreateProduct(void* const targetAddress) override;
 };
@@ -64,7 +66,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 
 	// pool test
 	{
-		MUtil::IPool<X> *pool = new Pool<X>(0);
+		MUtil::IPool<X> *pool = new MUtil::Pool<X>(0);
 
 		srand(static_cast<unsigned>(time(nullptr)));
 		FactoryX pFactory;

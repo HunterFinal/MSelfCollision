@@ -13,11 +13,11 @@
 
 #include <iostream>
 
+struct Vector2;
+struct Vector3;
+
 namespace Core
 {
-	struct Vector2;
-	struct Vector3;
-
 	struct Vector2
 	{
 		// std::cout overload
@@ -77,7 +77,7 @@ namespace Core
 		{}
 
 		explicit Vector2(const float _x, 
-						 const float _y)	noexcept
+							const float _y)	noexcept
 			: x(_x)			
 			, y(_y)			
 		{}
@@ -141,7 +141,7 @@ namespace Core
 		auto GetNormalized() const	-> Vector2;
 		void Normalize();
 
-	};
+	}; // struct Vector2
 
 	struct Vector3
 	{
@@ -216,15 +216,15 @@ namespace Core
 		{}
 
 		explicit Vector3(const float _x, 
-						 const float _y)					
+							const float _y)					
 			: x(_x)				
 			, y(_y)				
 			, z(0.f)
 		{}
 
 		explicit Vector3(const float _x, 
-						 const float _y,
-						 const float _z)	noexcept
+							const float _y,
+							const float _z)	noexcept
 			: x(_x)				
 			, y(_y)				
 			, z(_z)					
@@ -300,6 +300,7 @@ namespace Core
 		auto GetNormalized() const	-> Vector3;
 		void Normalize();
 
-	};
+	}; // struct Vector3
 
-}
+} // namespace Core
+

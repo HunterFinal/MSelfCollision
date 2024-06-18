@@ -1,8 +1,8 @@
 #pragma once
 
-#include <functional>
-#include <mutex>
-#include <bitset>
+#include <functional>	// std::function
+#include <mutex>		// std::mutex
+#include <bitset>		// std::bitset
 
 #define DEBUG
 
@@ -17,14 +17,18 @@
 
 namespace MUtil
 {
-
 	namespace
 	{
 		constexpr uint32_t MAX_POOL_SIZE = 1000;
 		constexpr uint32_t DEFAULT_POOL_SIZE = 20;
 
+		// プールの値を合法的な値にする
 		inline void SetValidSize(int& size)
 		{
+			// sizeが負の数やゼロの場合はデフォルト値にする (20) 
+			// sizeが最大値に超えた場合は限界値にする　(1000)
+			// それ以外は何もしない
+
 			if(size <= 0)
 			{
 				#ifdef DEBUG
@@ -43,6 +47,7 @@ namespace MUtil
 			}	
 		}
 	}// nameless namespace
+
 	// IPoolインターフェース
 	template <typename obj>
 	class IPool
@@ -52,6 +57,7 @@ namespace MUtil
 		virtual inline void Recycle(obj* recycleObj) = 0;
 		virtual inline void InitPool(std::function<obj*(void* const targetAddress)> factory) = 0;
 
+	// Getter
 	public:
 		virtual inline bool IsEmpty() = 0;
 		virtual inline bool IsFull() = 0;
@@ -193,12 +199,11 @@ namespace MUtil
 		}
 	}
 
-	/// @brief Pool initialize
-	/// @tparam T type
+	/// @brief プールを初期化
+	/// @tparam オブジェクトのタイプT
 	template<typename T>
 	inline void Pool<T>::InitPool(std::function<T* (void* const targetAddress)> factory)
 	{
-		// vessel initialize
 		_pPool = static_cast<T*>(malloc(sizeof(T) * _poolSize));
 
 		// On 32-bit systems, sizeof(void*) = 4 bytes. On 64-bit systems, sizeof(void*) = 8 bytes.
@@ -206,7 +211,7 @@ namespace MUtil
 
 		if(_pPool != nullptr  && _pAddressBuffer != nullptr)
 		{
-			// create obj in advance
+			// オブジェクトを作って、アドレスをバッファに入れる
 			for (int i = 0; i < _poolSize; ++i)
 			{
 				_pAddressBuffer[i] = factory(_pPool + i);
@@ -214,10 +219,15 @@ namespace MUtil
 				//	std::cout << obj << std::endl;
 				//#endif
 			}
+
+			// 最後のプール処理サインを書き込みにする
 			_rwSign = 0b1;
 		}
+
+		// プールやアドレスバッファいずれかのメモリ確保失敗
 		else
 		{
+			// 確保したメモリを解放
 			SAVE_FREE(_pPool);
 			SAVE_FREE(_pAddressBuffer);
 

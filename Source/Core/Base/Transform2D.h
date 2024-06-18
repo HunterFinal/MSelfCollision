@@ -12,8 +12,6 @@
 #include "../Vector/Vector.h"
 #include "../../Utilities/Property.h"
 
-using namespace MUtil;
-
 namespace Core
 {
 	class Transform2D

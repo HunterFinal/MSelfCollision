@@ -4,13 +4,16 @@
 
 enum class ECollisionShape;
 
+struct Collision2D;
+
 namespace Core
 {
 	class Collider2D
 	{
 
 	public:
-		virtual bool IsHit(Collider2D *other) = 0;	
+		virtual bool IsHit() = 0;
+		Collision2D GetHitCollision2D();	
 
 	// 	コンストラクタ・デストラクタ
 	public:
@@ -20,19 +23,31 @@ namespace Core
 	// コピー・ムーブ
 	public:
 		// コピー
-		Collider2D(const Collider2D& rhs);
-		Collider2D& operator =(const Collider2D& rhs);
+		Collider2D(const Collider2D& other);
+		Collider2D& operator =(const Collider2D& other);
 
 		// ムーブ
-		Collider2D(Collider2D&& rhs) noexcept;
-		Collider2D& operator =(Collider2D&& rhs) noexcept;
+		Collider2D(Collider2D&& other) noexcept;
+		Collider2D& operator =(Collider2D&& other) noexcept;
 
+	// Public method
+	// Getter
 	public:
-		// 
+		ECollisionShape GetShape() const;
+		Vector2 GetCenter2D() const;
+		bool IsActive() const { return _bActive;}
+
+	// Setter
+	public: 
+		void SetCenter2D(const Vector2& center);
+		void SetActive(bool bValue);
 
 	protected:
 		ECollisionShape _shape;
 		Vector2 _center;
+
+	private:
+		bool _bActive;
 
 	};
 
@@ -42,7 +57,7 @@ namespace Core
 		BoxCollider2D();
 		~BoxCollider2D() override;
 	private:
-		Vector2* _size;
+		Vector2 _size;
 
 	};
 

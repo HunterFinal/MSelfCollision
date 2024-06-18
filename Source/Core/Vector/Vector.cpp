@@ -12,7 +12,7 @@
 
 #include <cmath>
 
-#include "Vector.h"
+#include "vector.h"
 
 #ifndef _FLOAT_TOLERANCE
 
@@ -23,8 +23,8 @@
 
 namespace Core
 {
-// Vector2 
-#pragma region Vector2
+	// Vector2 
+	#pragma region Vector2
 	// Static properties initialize 
 	#pragma region Static properties initialize
 
