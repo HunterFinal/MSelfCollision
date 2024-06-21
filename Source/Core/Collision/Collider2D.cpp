@@ -8,7 +8,7 @@ namespace MSelfCollision
  
     Collider2D::Collider2D()
             : _shape(ECollisionShape::None)
-            , _center({})
+            , _center(Core::Vector2::Zero)
     {
         ;
     }

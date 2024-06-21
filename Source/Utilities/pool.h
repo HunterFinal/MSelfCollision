@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <functional>	// std::function
 #include <mutex>		// std::mutex
 #include <bitset>		// std::bitset
