@@ -53,6 +53,7 @@ namespace MSelfCollision
 
         rhs._shape = ECollisionShape::None;
         rhs._center = Core::Vector2::PositiveInfinity;
+        
 
         return *this;        
     }
