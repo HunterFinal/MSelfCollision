@@ -59,10 +59,10 @@ namespace MUtil
 
 	// Getter
 	public:
-		virtual inline bool IsEmpty() = 0;
-		virtual inline bool IsFull() = 0;
-		virtual inline int GetCapacity() = 0;
-		virtual inline int GetCount() = 0;
+		virtual inline bool IsEmpty() const = 0;
+		virtual inline bool IsFull() const = 0;
+		virtual inline int GetCapacity() const = 0;
+		virtual inline int GetCount() const = 0;
 
 	public:
 		virtual ~IPool() {}
@@ -88,15 +88,17 @@ namespace MUtil
 	// IPool
 
 	public:
-		inline bool IsEmpty() override { return _headIndex == _tailIndex && (_rwSign == 0b0);}
-		inline bool IsFull() override {	return _headIndex == _tailIndex && (_rwSign == 0b1);}
-		inline int GetCapacity() override { return _poolSize;}
-		inline int GetCount() override
+		inline bool IsEmpty() const override { return _headIndex == _tailIndex && (_rwSign == 0b0);}
+		inline bool IsFull() const override {	return _headIndex == _tailIndex && (_rwSign == 0b1);}
+		inline int GetCapacity() const override { return _poolSize;}
+		inline int GetCount() const override
 		{
-			return 0;
+			// プールが満タンになったら最初の計算だと0になってしまうため、
+			// プールサイズを加える
+			return (_poolSize - _headIndex + _tailIndex) % _poolSize + (IsFull() ? _poolSize : 0);
 		}
 
-	// constructor/destructor
+	// コンストラクタ
 	public:
 		explicit Pool(int size = 0) 
 			: _pPool(nullptr)
@@ -108,31 +110,30 @@ namespace MUtil
 			// サイズを合理的な値にする
 			SetValidSize(size);
 			_poolSize = (uint32_t)size;
-			#ifdef DEBUG
-				std::cout << "Create pool" << std::endl;
-			#endif // DEBUG
 		}
+
+		// デストラクタ
 		virtual ~Pool()
 		{
+			// スレッドセーフ
 			LOCK(_mutex);
 
+			// mallocでメモリを作ったのでコンストラクタを呼び出す
 			for(int i = 0;i < _poolSize; ++i)
 			{
 				_pPool[i].~T();
 			}
 
+			// mallocで確保したメモリの解放
 			SAVE_FREE(_pPool);
 			SAVE_FREE(_pAddressBuffer);
 
-			#ifdef DEBUG
-				std::cout << "Delete pool" << std::endl;
-			#endif // DEBUG
 		}
 
 	// Method
 	private:
 
-	// Protected property
+	// Protectedプロパティ
 	protected:
 		T *_pPool;
 		T **_pAddressBuffer;
@@ -141,11 +142,10 @@ namespace MUtil
 		uint16_t _tailIndex;
 
 	private:
-		std::mutex _mutex;
-		std::bitset<1> _rwSign;	//最後の操作の標識		0(読み込み)	1(書き込み)
-	// 
-	};
-	// End Pool  
+		std::mutex _mutex;		// 
+		std::bitset<1> _rwSign;	// 最後の操作の標識		0(読み込み)	1(書き込み)
+	 
+	};// class Pool  
 
 	/// @brief allocate obj 
 	/// @tparam T type

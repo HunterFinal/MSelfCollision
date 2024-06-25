@@ -1,3 +1,15 @@
+// ---------------------------------------------------------------------------------------------------------------------------------------
+// File name:           ring_buffer.h
+// Version:             v1.0
+// Description:         A template ring buffer class
+// Namespace:           MUtil
+// Note:                
+//                          
+// Update:              2024/06/17  Create
+//
+// Author:              MAI ZHICONG
+// ---------------------------------------------------------------------------------------------------------------------------------------
+
 #pragma once
 #include <cstdint>
 #include <iostream>
@@ -10,10 +22,6 @@
 #include "memory_release_def.h"
 #endif // !SAVE_RELEASE
 
-// スレッドセーフ
-#ifndef THREAD_SAVE
-#include "thread_safe_def.h"
-#endif // !THREAD_SAVE
 
 // コンソールデバッグ用
 #define DEBUG 

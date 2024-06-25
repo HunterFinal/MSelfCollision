@@ -33,11 +33,13 @@ namespace MDesignPattern
         public:
             static inline std::shared_ptr<T> GetInstance()
             {
+                // インスタンス生成は一回しか実行しない
                 static std::once_flag flag;
                 std::call_once(flag,[&]()
                 {
                     _instance = std::shared_ptr<T>(new T);
                 });
+
                 return _instance;
             }
 
@@ -55,6 +57,5 @@ namespace MDesignPattern
         template<typename T>
         std::shared_ptr<T> Singleton<T>::_instance = nullptr;
     }// namespace MSingleton
-
 
 }// namespace MDesignPattern

@@ -1,8 +1,8 @@
-#include <iostream>
-#include <windows.h>
+#include <iostream>		// std::cout std::endl
+#include <windows.h>	// 
 #include <tchar.h>
 #include <string>
-#include <vector>
+#include <vector>		// std::vector<T>
 
 #include "Core/Vector/vector.h"
 #include "Core/Base/Transform2D.h"
