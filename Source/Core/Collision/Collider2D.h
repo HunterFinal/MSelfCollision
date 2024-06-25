@@ -32,6 +32,8 @@ namespace MSelfCollision
 	// 	コンストラクタ・デストラクタ
 	public:
 		Collider2D();
+		Collider2D(ECollisionShape shape);
+		Collider2D(ECollisionShape shape,Core::Vector2 center);
 		virtual ~Collider2D();
 
 	// コピー・ムーブ
@@ -47,14 +49,14 @@ namespace MSelfCollision
 	// Public method
 	// Getter
 	public:
-		ECollisionShape GetShape() const;
-		Core::Vector2 GetCenter2D() const;
+		ECollisionShape GetShape() const { return _shape;};
+		Core::Vector2 GetCenter2D() const { return _center;};
 		bool IsActive() const { return _bActive;}
 
 	// Setter
 	public: 
-		void SetCenter2D(const Core::Vector2& center);
-		void SetActive(bool bValue);
+		void SetCenter2D(const Core::Vector2& center) { _center = center;}
+		void SetActive(bool bValue) { _bActive = bValue;}
 
 	protected:
 		ECollisionShape _shape;
@@ -69,6 +71,7 @@ namespace MSelfCollision
 	{
 	public:
 		BoxCollider2D();
+		BoxCollider2D(Core::Vector2 center,Core::Vector2 size);
 		~BoxCollider2D() override;
 	private:
 		Core::Vector2 _size;
@@ -79,6 +82,7 @@ namespace MSelfCollision
 	{
 	public:
 		CircleCollider2D();
+		CircleCollider2D(Core::Vector2 center,float radius);
 		~CircleCollider2D() override;
 	private:
 		float _radius;
