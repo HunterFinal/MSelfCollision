@@ -18,16 +18,30 @@
 
 enum class ECollisionShape;
 
+// コリジョンの情報が詰まった構造体
 struct Collision2D;
 
 namespace MSelfCollision
 {
+	// コライダー2D (抽象クラス)
 	class Collider2D
 	{
 
 	public:
 		virtual bool IsHit() = 0;
-		Collision2D GetHitCollision2D();	
+		Collision2D GetHitCollision2D();
+			
+	// Public method
+	// Getter
+	public:
+		ECollisionShape GetShape() const { return _shape;};
+		Core::Vector2 GetCenter2D() const { return _center;};
+		bool IsActive() const { return _bActive;}
+
+	// Setter
+	public: 
+		void SetCenter2D(const Core::Vector2& center) { _center = center;}
+		void SetActive(bool bValue) { _bActive = bValue;}
 
 	// 	コンストラクタ・デストラクタ
 	public:
@@ -46,17 +60,6 @@ namespace MSelfCollision
 		Collider2D(Collider2D&& other) noexcept;
 		Collider2D& operator =(Collider2D&& other) noexcept;
 
-	// Public method
-	// Getter
-	public:
-		ECollisionShape GetShape() const { return _shape;};
-		Core::Vector2 GetCenter2D() const { return _center;};
-		bool IsActive() const { return _bActive;}
-
-	// Setter
-	public: 
-		void SetCenter2D(const Core::Vector2& center) { _center = center;}
-		void SetActive(bool bValue) { _bActive = bValue;}
 
 	protected:
 		ECollisionShape _shape;

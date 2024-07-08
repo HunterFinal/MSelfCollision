@@ -4,12 +4,14 @@
 
 #include "../Utilities/MDesignPattern/singleton.h"
 
+
 namespace MSelfCollision
 {
+    // 前方宣言
+    class Collider2D;
+
     namespace MManagement
     {
-        // 前方宣言
-        class Collider2D;
 
         class Collider2DManagement : public MDesignPattern::MSingleton::Singleton<Collider2DManagement>
         {
@@ -23,12 +25,14 @@ namespace MSelfCollision
             ~Collider2DManagement();
 
         public:
-            void Update();
+            void UpdateCollision();
+
+        public:
+            void RegisterCollider(Collider2D* collider);
 
         private:
             // 全てのコライダーを管理する動的配列
             std::vector<Collider2D*> _colliders;
-
         };
 
     }// namespace MManagement
